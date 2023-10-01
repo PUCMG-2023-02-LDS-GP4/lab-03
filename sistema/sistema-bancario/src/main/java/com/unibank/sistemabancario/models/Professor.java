@@ -9,13 +9,13 @@ public class Professor extends Pessoa {
     
     private String departamento;
     
-    private Integer saldoDeMoedas;
+    private int saldoDeMoedas;
 
 
     public Professor() {
     }
 
-    public Professor(String departamento, Integer saldoDeMoedas) {
+    public Professor(String departamento, int saldoDeMoedas) {
         this.departamento = departamento;
         this.saldoDeMoedas = saldoDeMoedas;
     }
@@ -28,11 +28,11 @@ public class Professor extends Pessoa {
         this.departamento = departamento;
     }
 
-    public Integer getSaldoDeMoedas() {
+    public int getSaldoDeMoedas() {
         return this.saldoDeMoedas;
     }
 
-    public void setSaldoDeMoedas(Integer saldoDeMoedas) {
+    public void setSaldoDeMoedas(int saldoDeMoedas) {
         this.saldoDeMoedas = saldoDeMoedas;
     }
 
@@ -41,7 +41,7 @@ public class Professor extends Pessoa {
         return this;
     }
 
-    public Professor saldoDeMoedas(Integer saldoDeMoedas) {
+    public Professor saldoDeMoedas(int saldoDeMoedas) {
         setSaldoDeMoedas(saldoDeMoedas);
         return this;
     }

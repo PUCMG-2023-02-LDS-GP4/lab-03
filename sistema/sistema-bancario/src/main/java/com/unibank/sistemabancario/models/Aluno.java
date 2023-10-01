@@ -16,13 +16,13 @@ public class Aluno extends Pessoa {
     
     private String curso;
     
-    private Integer saldoDeMoedas;
+    private int saldoDeMoedas;
 
 
     public Aluno() {
     }
 
-    public Aluno(String rg, String endereco, Instituicao instituicao, String curso, Integer saldoDeMoedas) {
+    public Aluno(String rg, String endereco, Instituicao instituicao, String curso, int saldoDeMoedas) {
         this.rg = rg;
         this.endereco = endereco;
         this.instituicao = instituicao;
@@ -62,11 +62,11 @@ public class Aluno extends Pessoa {
         this.curso = curso;
     }
 
-    public Integer getSaldoDeMoedas() {
+    public int getSaldoDeMoedas() {
         return this.saldoDeMoedas;
     }
 
-    public void setSaldoDeMoedas(Integer saldoDeMoedas) {
+    public void setSaldoDeMoedas(int saldoDeMoedas) {
         this.saldoDeMoedas = saldoDeMoedas;
     }
 
@@ -90,7 +90,7 @@ public class Aluno extends Pessoa {
         return this;
     }
 
-    public Aluno saldoDeMoedas(Integer saldoDeMoedas) {
+    public Aluno saldoDeMoedas(int saldoDeMoedas) {
         setSaldoDeMoedas(saldoDeMoedas);
         return this;
     }

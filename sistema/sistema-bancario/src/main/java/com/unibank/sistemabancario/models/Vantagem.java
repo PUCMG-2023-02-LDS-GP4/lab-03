@@ -13,7 +13,7 @@ public class Vantagem {
     
     private String descricao;
     
-    private Integer custoEmMoedas;
+    private int custoEmMoedas;
     
     private String foto;  // Simplificando para um caminho de arquivo ou URL
 
@@ -21,7 +21,7 @@ public class Vantagem {
     public Vantagem() {
     }
 
-    public Vantagem(Long id, String descricao, Integer custoEmMoedas, String foto) {
+    public Vantagem(Long id, String descricao, int custoEmMoedas, String foto) {
         this.id = id;
         this.descricao = descricao;
         this.custoEmMoedas = custoEmMoedas;
@@ -44,11 +44,11 @@ public class Vantagem {
         this.descricao = descricao;
     }
 
-    public Integer getCustoEmMoedas() {
+    public int getCustoEmMoedas() {
         return this.custoEmMoedas;
     }
 
-    public void setCustoEmMoedas(Integer custoEmMoedas) {
+    public void setCustoEmMoedas(int custoEmMoedas) {
         this.custoEmMoedas = custoEmMoedas;
     }
 
@@ -70,7 +70,7 @@ public class Vantagem {
         return this;
     }
 
-    public Vantagem custoEmMoedas(Integer custoEmMoedas) {
+    public Vantagem custoEmMoedas(int custoEmMoedas) {
         setCustoEmMoedas(custoEmMoedas);
         return this;
     }
