@@ -6,53 +6,17 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pessoa {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String nome;
-    
-    private String email;
+public class Pessoa extends User{
     
     private String cpf;
 
-    private String password;
 
 
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String email, String cpf) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
+    public Pessoa(String cpf) {
         this.cpf = cpf;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCpf() {
@@ -83,14 +47,6 @@ public class Pessoa {
         return this;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -99,21 +55,18 @@ public class Pessoa {
             return false;
         }
         Pessoa pessoa = (Pessoa) o;
-        return Objects.equals(id, pessoa.id) && Objects.equals(nome, pessoa.nome) && Objects.equals(email, pessoa.email) && Objects.equals(cpf, pessoa.cpf);
+        return Objects.equals(cpf, pessoa.cpf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, email, cpf);
+        return Objects.hashCode(cpf);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", nome='" + getNome() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", cpf='" + getCpf() + "'" +
+            " cpf='" + getCpf() + "'" +
             "}";
     }
     

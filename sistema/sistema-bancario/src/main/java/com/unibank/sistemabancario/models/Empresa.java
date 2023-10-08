@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Empresa {
+public class Empresa extends Pessoa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,10 +10,5 @@ import com.unibank.sistemabancario.models.Pessoa;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
-    @Transactional(readOnly = true)
-    Pessoa findPessoaByEmail(String email);
 
-    @Transactional(readOnly = true)
-    Pessoa findPessoaById(Long id);
-    
 }

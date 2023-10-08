@@ -17,17 +17,22 @@ import com.unibank.sistemabancario.repositories.PessoaRepository;
 public class PessoaService {
     
     @Autowired
-    private PessoaRepository PessoaRepository;
+    private PessoaRepository pessoaRepository;
 
-    @Transactional
-    public Pessoa authenticateUser(String email, String password) {
-        Pessoa user = PessoaRepository.findPessoaByEmail(email);
+    public List<Pessoa> findAll() {
+        return pessoaRepository.findAll();
+    }
 
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
-        }
+    public Pessoa findById(Long id) {
+        return pessoaRepository.findById(id).orElse(null);
+    }
+
+    public Pessoa save(Pessoa pessoa) {
+        return pessoaRepository.save(pessoa);
+    }
+
+    public void delete(Long id) {
+        pessoaRepository.deleteById(id);
     }
 
 }
