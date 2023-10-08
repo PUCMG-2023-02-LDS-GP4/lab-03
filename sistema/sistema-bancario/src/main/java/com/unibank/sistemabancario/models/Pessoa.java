@@ -18,6 +18,8 @@ public class Pessoa {
     
     private String cpf;
 
+    private String password;
+
 
     public Pessoa() {
     }
@@ -79,6 +81,14 @@ public class Pessoa {
     public Pessoa cpf(String cpf) {
         setCpf(cpf);
         return this;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
