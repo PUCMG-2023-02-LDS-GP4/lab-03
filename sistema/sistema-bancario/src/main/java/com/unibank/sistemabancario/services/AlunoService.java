@@ -1,6 +1,7 @@
 package com.unibank.sistemabancario.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,15 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    public Aluno findById(Long id) {
-        return alunoRepository.findById(id).orElse(null);
+    public Optional<Aluno> findById(Long id) {
+        return alunoRepository.findById(id);
     }
 
     public Aluno save(Aluno aluno) {
         return alunoRepository.save(aluno);
     }
 
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         alunoRepository.deleteById(id);
     }
     

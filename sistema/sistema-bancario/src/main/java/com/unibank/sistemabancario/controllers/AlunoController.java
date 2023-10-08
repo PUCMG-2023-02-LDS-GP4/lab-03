@@ -1,11 +1,13 @@
 package com.unibank.sistemabancario.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.unibank.sistemabancario.models.Aluno;
 import com.unibank.sistemabancario.services.AlunoService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/alunos")
@@ -15,28 +17,40 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @GetMapping
-    public List<Aluno> getAll() {
-        return alunoService.findAll();
+    public ResponseEntity<List<Aluno>> findAll() {
+        return ResponseEntity.ok(alunoService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Aluno getById(@PathVariable Long id) {
-        return alunoService.findById(id);
+    public ResponseEntity<Aluno> findById(@PathVariable Long id) {
+        Optional<Aluno> optionalAluno = alunoService.findById(id);
+        return optionalAluno.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Aluno create(@RequestBody Aluno aluno) {
-        return alunoService.save(aluno);
+    public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
+        return ResponseEntity.ok(alunoService.save(aluno));
     }
 
     @PutMapping("/{id}")
-    public Aluno update(@PathVariable Long id, @RequestBody Aluno aluno) {
-        aluno.setId(id);
-        return alunoService.save(aluno);
+    public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno aluno) {
+        Optional<Aluno> optionalAluno = alunoService.findById(id);
+        if (optionalAluno.isPresent()) {
+            aluno.setId(optionalAluno.get().getId());
+            return ResponseEntity.ok(alunoService.save(aluno));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        alunoService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        Optional<Aluno> optionalAluno = alunoService.findById(id);
+        if (optionalAluno.isPresent()) {
+            alunoService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

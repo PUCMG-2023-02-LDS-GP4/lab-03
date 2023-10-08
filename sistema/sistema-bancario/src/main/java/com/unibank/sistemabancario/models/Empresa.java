@@ -5,13 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Empresa extends Pessoa {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String nome;
+public class Empresa extends User {
     
     @OneToMany
     private List<Vantagem> listaDeVantagens;
@@ -20,26 +14,8 @@ public class Empresa extends Pessoa {
     public Empresa() {
     }
 
-    public Empresa(Long id, String nome, List<Vantagem> listaDeVantagens) {
-        this.id = id;
-        this.nome = nome;
+    public Empresa(List<Vantagem> listaDeVantagens) {
         this.listaDeVantagens = listaDeVantagens;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public List<Vantagem> getListaDeVantagens() {
@@ -73,12 +49,12 @@ public class Empresa extends Pessoa {
             return false;
         }
         Empresa empresa = (Empresa) o;
-        return Objects.equals(id, empresa.id) && Objects.equals(nome, empresa.nome) && Objects.equals(listaDeVantagens, empresa.listaDeVantagens);
+        return Objects.equals(listaDeVantagens, empresa.listaDeVantagens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, listaDeVantagens);
+        return Objects.hash(listaDeVantagens);
     }
 
     @Override
@@ -89,5 +65,6 @@ public class Empresa extends Pessoa {
             ", listaDeVantagens='" + getListaDeVantagens() + "'" +
             "}";
     }
+
     
 }
