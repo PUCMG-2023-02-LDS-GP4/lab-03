@@ -11,6 +11,10 @@ public class Professor extends Pessoa {
     
     private int saldoDeMoedas;
 
+    @ManyToOne
+    @JoinColumn(name = "instituicao_id")
+    private Instituicao instituicao;
+
 
     public Professor() {
     }

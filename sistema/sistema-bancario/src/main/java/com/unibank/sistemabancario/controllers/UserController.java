@@ -66,13 +66,5 @@ public class UserController {
         return ResponseEntity.ok().body(resposta);
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<User> authenticate(@RequestBody User user) {
-        User authenticatedUser = UserService.authenticateUser(user.getEmail(), user.getPassword());
-        if (authenticatedUser != null) {
-            return ResponseEntity.ok(authenticatedUser);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
+
 }

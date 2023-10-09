@@ -31,7 +31,7 @@ public class AlunoController {
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
         return ResponseEntity.ok(alunoService.save(aluno));
     }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno aluno) {
         Optional<Aluno> optionalAluno = alunoService.findById(id);
