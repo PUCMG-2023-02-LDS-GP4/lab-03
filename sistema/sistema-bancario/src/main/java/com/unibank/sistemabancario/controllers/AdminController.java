@@ -105,4 +105,5 @@ public class AdminController {
     public Empresa findEmpresa(Long id) {
         return empresaRepository.findById(id).orElse(null);
     }
+    
 }

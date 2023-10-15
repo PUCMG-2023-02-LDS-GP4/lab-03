@@ -75,4 +75,51 @@ public class AdminService {
     public void deleteEmpresa(Long id) {
         empresaRepository.deleteById(id);
     }
+
+    public Admin updateAdmin(Long id, CreateAdminDTO createAdminDTO) {
+        Admin existingAdmin = adminRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Admin not found")
+        );
+        existingAdmin.setNome(createAdminDTO.getNome());
+        existingAdmin.setEmail(createAdminDTO.getEmail());
+        existingAdmin.setPassword(createAdminDTO.getPassword());
+        return adminRepository.save(existingAdmin);
+    }
+
+    public Professor updateProfessor(Long id, CreateProfessorDTO createProfessorDTO) {
+        Professor existingProfessor = professorRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Professor not found")
+        );
+        existingProfessor.setNome(createProfessorDTO.getNome());
+        existingProfessor.setEmail(createProfessorDTO.getEmail());
+        existingProfessor.setPassword(createProfessorDTO.getPassword());
+        existingProfessor.setCpf(createProfessorDTO.getCpf());
+        existingProfessor.setDepartamento(createProfessorDTO.getDepartamento());
+        existingProfessor.setSaldoDeMoedas(createProfessorDTO.getSaldoDeMoedas());
+
+        return professorRepository.save(existingProfessor);
+    }
+
+    public Empresa updateEmpresa(Long id, CreateEmpresaDTO createEmpresaDTO) {
+        Empresa existingEmpresa = empresaRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Empresa not found")
+        );
+        existingEmpresa.setNome(createEmpresaDTO.getNome());
+        existingEmpresa.setEmail(createEmpresaDTO.getEmail());
+        existingEmpresa.setPassword(createEmpresaDTO.getPassword());
+        
+        return empresaRepository.save(existingEmpresa);
+    }
+
+    public Admin findAdmin(Long id) {
+        return adminRepository.findById(id).orElse(null);
+    }
+
+    public Professor findProfessor(Long id) {
+        return professorRepository.findById(id).orElse(null);
+    }
+
+    public Empresa findEmpresa(Long id) {
+        return empresaRepository.findById(id).orElse(null);
+    }
 }
