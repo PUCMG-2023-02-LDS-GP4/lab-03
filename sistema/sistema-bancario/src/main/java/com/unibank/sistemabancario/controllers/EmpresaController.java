@@ -1,8 +1,11 @@
 package com.unibank.sistemabancario.controllers;
 
 import com.unibank.sistemabancario.models.Empresa;
+import com.unibank.sistemabancario.models.Vantagem;
+import com.unibank.sistemabancario.models.dtos.CreateVantagemDTO;
 import com.unibank.sistemabancario.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,4 +60,10 @@ public class EmpresaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping(value = "/{id}/vantagens", consumes = "multipart/form-data")
+    public ResponseEntity<Vantagem> createVantagem(@PathVariable Long id, @RequestBody CreateVantagemDTO createVantagemDTO) {
+        Vantagem vantagem = empresaService.createVantagem(id, createVantagemDTO);
+        return new ResponseEntity<>(vantagem, HttpStatus.CREATED);
+}
 }

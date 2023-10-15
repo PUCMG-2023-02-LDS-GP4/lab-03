@@ -1,7 +1,5 @@
 package com.unibank.sistemabancario.services;
 
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +9,6 @@ import com.unibank.sistemabancario.models.User;
 import com.unibank.sistemabancario.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,15 +34,11 @@ public class UserService {
 
     @Transactional
     public User create(User user) {
-        // Verificar se o e-mail já existe no banco de dados
         if (userRepository.findUserByEmail(user.getEmail()) != null) {
             throw new IllegalArgumentException("O e-mail já está sendo usado.");
         }
     
-        // Salvar o usuário no banco de dados
-        User createdUser = userRepository.save(user);
-
-        return createdUser;
+        return userRepository.save(user);
     }
     
     @Transactional
