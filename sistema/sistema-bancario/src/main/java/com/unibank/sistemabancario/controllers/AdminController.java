@@ -4,9 +4,6 @@ import com.unibank.sistemabancario.models.*;
 import com.unibank.sistemabancario.models.dtos.CreateAdminDTO;
 import com.unibank.sistemabancario.models.dtos.CreateEmpresaDTO;
 import com.unibank.sistemabancario.models.dtos.CreateProfessorDTO;
-import com.unibank.sistemabancario.repositories.AdminRepository;
-import com.unibank.sistemabancario.repositories.EmpresaRepository;
-import com.unibank.sistemabancario.repositories.ProfessorRepository;
 import com.unibank.sistemabancario.services.AdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +15,6 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-
-    @Autowired
-    private AdminRepository adminRepository;
-
-    @Autowired
-    private ProfessorRepository professorRepository;
-
-    @Autowired
-    private EmpresaRepository empresaRepository;
-
 
     @PostMapping("/create")
     public Admin create(@RequestBody CreateAdminDTO createAdminDTO) {
