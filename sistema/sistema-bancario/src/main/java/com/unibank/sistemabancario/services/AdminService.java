@@ -63,4 +63,16 @@ public class AdminService {
         empresa.setPassword(createEmpresaDTO.getPassword());
         return empresaRepository.save(empresa);
     }
+
+    public void deleteAdmin(Long id) {
+        adminRepository.deleteById(id);
+    }
+
+    public void deleteProfessor(Long id) {
+        professorRepository.deleteById(id);
+    }
+
+    public void deleteEmpresa(Long id) {
+        empresaRepository.deleteById(id);
+    }
 }
