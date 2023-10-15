@@ -59,51 +59,34 @@ public class AdminController {
         adminService.deleteEmpresa(id);
     }
 
-    public Admin updateAdmin(Long id, CreateAdminDTO createAdminDTO) {
-        Admin existingAdmin = adminRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("Admin not found")
-        );
-        existingAdmin.setNome(createAdminDTO.getNome());
-        existingAdmin.setEmail(createAdminDTO.getEmail());
-        existingAdmin.setPassword(createAdminDTO.getPassword());
-        return adminRepository.save(existingAdmin);
+    @PutMapping("/update/{id}")
+    public Admin update(@PathVariable Long id, @RequestBody CreateAdminDTO createAdminDTO) {
+        return adminService.updateAdmin(id, createAdminDTO);
     }
 
-    public Professor updateProfessor(Long id, CreateProfessorDTO createProfessorDTO) {
-        Professor existingProfessor = professorRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("Professor not found")
-        );
-        existingProfessor.setNome(createProfessorDTO.getNome());
-        existingProfessor.setEmail(createProfessorDTO.getEmail());
-        existingProfessor.setPassword(createProfessorDTO.getPassword());
-        existingProfessor.setCpf(createProfessorDTO.getCpf());
-        existingProfessor.setDepartamento(createProfessorDTO.getDepartamento());
-        existingProfessor.setSaldoDeMoedas(createProfessorDTO.getSaldoDeMoedas());
-
-        return professorRepository.save(existingProfessor);
+    @PutMapping("/updateProfessor/{id}")
+    public Professor updateProfessor(@PathVariable Long id, @RequestBody CreateProfessorDTO createProfessorDTO) {
+        return adminService.updateProfessor(id, createProfessorDTO);
     }
 
-    public Empresa updateEmpresa(Long id, CreateEmpresaDTO createEmpresaDTO) {
-        Empresa existingEmpresa = empresaRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("Empresa not found")
-        );
-        existingEmpresa.setNome(createEmpresaDTO.getNome());
-        existingEmpresa.setEmail(createEmpresaDTO.getEmail());
-        existingEmpresa.setPassword(createEmpresaDTO.getPassword());
-        
-        return empresaRepository.save(existingEmpresa);
+    @PutMapping("/updateEmpresa/{id}")
+    public Empresa updateEmpresa(@PathVariable Long id, @RequestBody CreateEmpresaDTO createEmpresaDTO) {
+        return adminService.updateEmpresa(id, createEmpresaDTO);
     }
 
-    public Admin findAdmin(Long id) {
-        return adminRepository.findById(id).orElse(null);
+    @GetMapping("/find/{id}")
+    public Admin findAdmin(@PathVariable Long id) {
+        return adminService.findAdmin(id);
     }
 
-    public Professor findProfessor(Long id) {
-        return professorRepository.findById(id).orElse(null);
+    @GetMapping("/findProfessor/{id}")
+    public Professor findProfessor(@PathVariable Long id) {
+        return adminService.findProfessor(id);
     }
 
-    public Empresa findEmpresa(Long id) {
-        return empresaRepository.findById(id).orElse(null);
+    @GetMapping("/findEmpresa/{id}")
+    public Empresa findEmpresa(@PathVariable Long id) {
+        return adminService.findEmpresa(id);
     }
-    
+
 }
