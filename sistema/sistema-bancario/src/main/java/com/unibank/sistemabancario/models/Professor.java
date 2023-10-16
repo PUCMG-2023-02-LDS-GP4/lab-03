@@ -13,7 +13,7 @@ public class Professor extends Pessoa {
     
     private String departamento;
     
-    private int saldoDeMoedas;
+    private int saldoDeMoedas = 1000;
 
     @ManyToOne
     @JoinColumn(name = "instituicao_id")
