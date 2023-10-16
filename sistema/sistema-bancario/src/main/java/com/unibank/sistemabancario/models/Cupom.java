@@ -13,5 +13,10 @@ public class Cupom {
     private Long id;
     
     private String codigo;
+
+    @ManyToOne
+    private Vantagem vantagem;
     
+    @ManyToOne
+    private Aluno aluno;
 }

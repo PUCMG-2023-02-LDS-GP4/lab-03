@@ -1,5 +1,8 @@
 package com.unibank.sistemabancario.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -24,4 +27,7 @@ public class Aluno extends Pessoa {
 
     @ManyToOne
     private Admin admin;
+
+    @ManyToOne
+    private List<Cupom> cupons = new ArrayList<>();
 }

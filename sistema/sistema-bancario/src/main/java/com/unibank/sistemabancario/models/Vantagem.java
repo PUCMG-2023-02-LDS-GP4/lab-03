@@ -15,6 +15,8 @@ public class Vantagem {
     private String descricao;
     
     private int custoEmMoedas;
+
+    private int quantidade;
     
     @Lob
     private byte[] foto;
