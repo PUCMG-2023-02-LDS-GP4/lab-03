@@ -1,0 +1,9 @@
+GET http://localhost:8080/alunos
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-26T161245.200.json
+
+###
+
