@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Table from "../../Table/Table";
 import { TableRow, TableCell, Button } from "@mui/material"
+import ProfessorForm from "./ProfessorForm/ProfessorForm";
+import CustomModal from "../../CustomModal/CustomModal";
 
 export default function ProfessorTable() {
     const url = 'http://localhost:8080/professor';
     const [professors, setProfessor] = useState([{id:"123", nome: "teste teste teste", email: "teste@teste",saldoDeMoedas: 0, departamento: "a", instituicao: "a"},]);
+    const [showModal, setShowModal] = useState(false);
 
     const columns = [
         { id: "id", label: "Id", minWidth: 50 },
@@ -17,13 +20,17 @@ export default function ProfessorTable() {
     ];
     
     function handleCreate(){
-        console.log("Novo professor");
-    }
-
-    function handleUpdate(){
-        alert("Atualizado")
+        setShowModal(true);
     }
     
+    function handleUpdate(){
+        setShowModal(true);
+    }
+    
+    function handleCloseModal(){
+        setShowModal(false);
+    }
+
     function handleDelete(){
         alert("Deletado")
     }
@@ -31,6 +38,10 @@ export default function ProfessorTable() {
     return(
         <>
             <Button variant="outlined" onClick={handleCreate}>Novo Professor</Button>
+            <CustomModal isOpen={showModal} onClose={handleCloseModal}>
+                <ProfessorForm />
+            </CustomModal>
+
             <Table columns={columns}>
                 {professors.map((professor) => (
                     <TableRow key={professor.id}>

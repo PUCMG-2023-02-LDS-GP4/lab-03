@@ -2,6 +2,7 @@ import { useState } from "react";
 import Table from "../../Table/Table";
 import { TableRow, TableCell, Button } from "@mui/material"
 import CustomModal from "../../CustomModal/CustomModal";
+import AlunoForm from "./AlunoForm/AlunoForm";
 
 export default function AlunoTable() {
     // const url = 'http://localhost:8080/alunos';
@@ -38,7 +39,7 @@ export default function AlunoTable() {
         <>
             <Button variant="outlined" onClick={handleCreate}>Novo Aluno</Button>
             <CustomModal isOpen={showModal} onClose={handleCloseModal}>
-
+                <AlunoForm />
             </CustomModal>
 
             <Table columns={columns}>

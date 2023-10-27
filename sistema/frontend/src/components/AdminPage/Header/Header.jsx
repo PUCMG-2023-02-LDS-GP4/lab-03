@@ -5,8 +5,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AlunoTable from '../AlunoTable/AlunoTable';
-import ProfessorTable from '../ProfessorTable';
-import Modal from '../../CustomModal/CustomModal'
+import ProfessorTable from '../ProfessorTable/ProfessorTable';
+import EmpresaTable from '../EmpresaTable/EmpresaTable';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,13 +58,13 @@ export default function Header() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <AlunoTable></AlunoTable>
+        <AlunoTable />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <ProfessorTable></ProfessorTable>
+        <ProfessorTable />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <Modal></Modal>
+        <EmpresaTable />
       </CustomTabPanel>
     </Box>
   );

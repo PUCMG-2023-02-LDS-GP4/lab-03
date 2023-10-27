@@ -1,0 +1,10 @@
+.modal-container{
+
+    Box {
+        display: flex;
+        flex-direction: column;
+        Button {
+            align-self: flex-end;
+        }
+    }
+}

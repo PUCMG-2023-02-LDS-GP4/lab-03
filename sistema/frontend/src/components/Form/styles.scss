@@ -1,0 +1,14 @@
+.form-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .field-container, TextField{
+        margin: 8px 0;
+    }
+
+    Button {
+        margin: 5px 0;
+    }
+}

@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
-import Table from "../../Table";
+import { useState } from "react";
+import Table from "../../Table/Table";
 import { TableRow, TableCell, Button } from "@mui/material"
+import CustomModal from "../../CustomModal/CustomModal"
+import EmpresaForm from "./EmpresaForm/EmpresaForm"
 
 export default function EmpresaTable() {
-    const url = 'http://localhost:8080/empresa';
+    // const url = 'http://localhost:8080/empresa';
     const [companies, setCompanies] = useState([{id:"123", nome: "teste teste teste", email: "teste@teste"},]);
+    const [showModal, setShowModal] = useState(false);
 
     const columns = [
         { id: "id", label: "Id", minWidth: 50 },
@@ -15,13 +18,17 @@ export default function EmpresaTable() {
     ];
     
     function handleCreate(){
-        alert("Nova empresa");
-    }
-
-    function handleUpdate(){
-        alert("Atualizado")
+        setShowModal(true);
     }
     
+    function handleUpdate(){
+        setShowModal(true);
+    }
+    
+    function handleCloseModal(){
+        setShowModal(false);
+    }
+
     function handleDelete(){
         alert("Deletado")
     }
@@ -29,6 +36,9 @@ export default function EmpresaTable() {
     return(
         <>
             <Button variant="outlined" onClick={handleCreate}>Nova Empresa</Button>
+            <CustomModal isOpen={showModal} onClose={handleCloseModal}>
+                <EmpresaForm />
+            </CustomModal>
             <Table columns={columns}>
                 {companies.map((company) => (
                     <TableRow key={company.id}>
