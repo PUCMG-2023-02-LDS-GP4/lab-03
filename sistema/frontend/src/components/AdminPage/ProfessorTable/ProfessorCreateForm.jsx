@@ -1,7 +1,6 @@
+import Form from "../../Form/Form"
 
-import Form from "../../../Form/Form"
-
-export default function AlunoForm() {
+export default function ProfessorForm() {
 
     const url = "";
 
@@ -36,13 +35,13 @@ export default function AlunoForm() {
 
 
     const labels = [
-        {id: 'email', label: 'E-mail', type: 'text'},
         {id: 'nome', label: 'Nome', type: 'text'},
+        {id: 'email', label: 'E-mail', type: 'text'},
         {id: 'password', label: 'Senha', type: 'password'},
         {id: 'cpf', label: 'CPF', type: 'text'},
         {id: 'endereco', label: 'Endereço', type: 'text'},
-        {id: 'Instituicao', label: 'Instuição', type: 'text'},
-        {id: 'curso', label: 'Curso', type: 'text'},
+        {id: 'departamento', label: 'Departamento', type: 'text'},
+        {id: 'saldoDeMoedas', label: 'Saldo de Moedas', type: 'number'},
 
     ]
 
@@ -53,7 +52,8 @@ export default function AlunoForm() {
         cpf: '',
         endereco: '',
         Instituicao: '',
-        curso: '',
+        departamento: '',
+        saldoDeMoedas: 100,
     }
 
     return(
@@ -61,8 +61,8 @@ export default function AlunoForm() {
             <Form 
             fields={labels} 
             handleSubmit={handleSubmit} 
-            action={"/alunos"}  
-            buttonSubmitText="Novo Aluno"
+            action={"admin/createProfessor"}  
+            buttonSubmitText="Novo Professor"
             fieldsInitialValues={initialValues}
             />
         </>

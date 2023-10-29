@@ -15,11 +15,10 @@ export default function Form({fields, handleSubmit, action, buttonSubmitText, fi
   
     const handleClick = () => {
         handleSubmit();
-        console.log(formData);
     }
   return (
     <div className="form-container">
-    <Box action={action}>
+    <Box action={action || ""}>
         <FormGroup>
             {fields.map((field) => (
                 <FormControl key={field.id} className="field-container">
@@ -39,11 +38,3 @@ export default function Form({fields, handleSubmit, action, buttonSubmitText, fi
     </div>
   )
 }
-
-
-/*
-                <TextField color='secondary' id={field.id} key={field.id} label={field.label} variant="outlined" fullWidth value={field.id} onChange={console.log("mudou")} />
-
-
-                
-                */
