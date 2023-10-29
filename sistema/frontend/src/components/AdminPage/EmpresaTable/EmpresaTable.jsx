@@ -2,12 +2,15 @@ import { useState } from "react";
 import Table from "../../Table/Table";
 import { TableRow, TableCell, Button } from "@mui/material"
 import CustomModal from "../../CustomModal/CustomModal"
-import EmpresaForm from "./EmpresaForm/EmpresaForm"
+import EmpresaCreateForm from "./EmpresaCreateForm"
+import EmpresaUpdateForm from "./EmpresaUpdateForm";
 
 export default function EmpresaTable() {
     // const url = 'http://localhost:8080/empresa';
     const [companies, setCompanies] = useState([{id:"123", nome: "teste teste teste", email: "teste@teste"},]);
-    const [showModal, setShowModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [empresaUpdateId, setEmpresaUpdateId] = useState();
 
     const columns = [
         { id: "id", label: "Id", minWidth: 50 },
@@ -18,27 +21,29 @@ export default function EmpresaTable() {
     ];
     
     function handleCreate(){
-        setShowModal(true);
+        setShowCreateModal(true);
     }
     
-    function handleUpdate(){
-        setShowModal(true);
-    }
-    
-    function handleCloseModal(){
-        setShowModal(false);
+    function handleCloseCreateModal(){
+        setShowCreateModal(false);
     }
 
-    function handleDelete(){
-        alert("Deletado")
+    function handleUpdate(empresaToUpdate){
+        setShowUpdateModal(true);
+        setEmpresaUpdateId(empresaToUpdate);
+    }
+    
+    function handleCloseUpdateModal(){
+        setShowUpdateModal(false);
+    }
+
+    function handleDelete(empresaToDelete){
+        alert(`Empresa ${empresaToDelete} foi deletado`)
     }
 
     return(
         <>
             <Button variant="outlined" onClick={handleCreate}>Nova Empresa</Button>
-            <CustomModal isOpen={showModal} onClose={handleCloseModal}>
-                <EmpresaForm />
-            </CustomModal>
             <Table columns={columns}>
                 {companies.map((company) => (
                     <TableRow key={company.id}>
@@ -55,12 +60,19 @@ export default function EmpresaTable() {
                             {company.saldoDeMoedas}
                         </TableCell>
                         <TableCell className="action-buttons">
-                            <Button variant="outlined" onClick={handleUpdate}>Atualizar</Button>
-                            <Button variant="outlined" onClick={handleDelete} color="error">Deletar</Button>
+                            <Button variant="outlined" onClick={() => handleUpdate(company.id)}>Atualizar</Button>
+                            <Button variant="outlined" onClick={() => handleDelete(company.id)} color="error">Deletar</Button>
                         </TableCell>
                     </TableRow>
                 ))}
             </Table>
+            <CustomModal isOpen={showCreateModal} onClose={handleCloseCreateModal}>
+                <EmpresaCreateForm />
+            </CustomModal>
+            
+            <CustomModal isOpen={showUpdateModal} onClose={handleCloseUpdateModal}>
+                <EmpresaUpdateForm empresaToUpdate={empresaUpdateId}/>
+            </CustomModal>
         </>
     )
 }

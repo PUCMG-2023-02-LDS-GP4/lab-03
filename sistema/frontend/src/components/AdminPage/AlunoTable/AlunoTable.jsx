@@ -2,12 +2,16 @@ import { useState } from "react";
 import Table from "../../Table/Table";
 import { TableRow, TableCell, Button } from "@mui/material"
 import CustomModal from "../../CustomModal/CustomModal";
-import AlunoForm from "./AlunoForm/AlunoForm";
+import AlunoCreateForm from "./AlunoCreateForm";
+import AlunoUpdateForm from "./AlunoUpdateForm";
 
 export default function AlunoTable() {
     // const url = 'http://localhost:8080/alunos';
     const [students, setStudents] = useState([{id:"123", nome: "teste teste teste", email: "teste@teste",saldoDeMoedas: 0, curso: "a", instituicao: "a"},]);
-    const [showModal, setShowModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [alunoUpdateId, setAlunoUpdateId] = useState();
+
 
     const columns = [
         { id: "id", label: "Id", minWidth: 50 },
@@ -20,27 +24,29 @@ export default function AlunoTable() {
     ];
     
     function handleCreate(){
-        setShowModal(true);
+        setShowCreateModal(true);
     }
     
-    function handleUpdate(){
-        setShowModal(true);
-    }
-    
-    function handleCloseModal(){
-        setShowModal(false);
+    function handleCloseCreateModal(){
+        setShowCreateModal(false);
     }
 
-    function handleDelete(){
-        alert("Deletado")
+    function handleUpdate(alunoId){
+        setShowUpdateModal(true);
+        setAlunoUpdateId(alunoId);
+    }
+    
+    function handleCloseUpdateModal(){
+        setShowUpdateModal(false);
+    }
+
+    function handleDelete(alunoId){
+        alert(`Aluno ${alunoId} foi deletado`)
     }
 
     return(
         <>
             <Button variant="outlined" onClick={handleCreate}>Novo Aluno</Button>
-            <CustomModal isOpen={showModal} onClose={handleCloseModal}>
-                <AlunoForm />
-            </CustomModal>
 
             <Table columns={columns}>
                 {students.map((student) => (
@@ -64,12 +70,20 @@ export default function AlunoTable() {
                             {student.saldoDeMoedas}
                         </TableCell>
                         <TableCell className="action-buttons">
-                            <Button variant="outlined" onClick={handleUpdate}>Atualizar</Button>
-                            <Button variant="outlined" onClick={handleDelete} color="error">Deletar</Button>
+                            <Button variant="outlined" onClick={() => handleUpdate(student.id)}>Atualizar</Button>
+                            <Button variant="outlined" onClick={() => handleDelete(student.id)} color="error">Deletar</Button>
                         </TableCell>
                     </TableRow>
                 ))}
             </Table>
+
+            <CustomModal isOpen={showCreateModal} onClose={handleCloseCreateModal}>
+                <AlunoCreateForm />
+            </CustomModal>
+
+            <CustomModal isOpen={showUpdateModal} onClose={handleCloseUpdateModal}>
+                <AlunoUpdateForm alunoToUpdate={alunoUpdateId}/>
+            </CustomModal>
         </>
     )
 }

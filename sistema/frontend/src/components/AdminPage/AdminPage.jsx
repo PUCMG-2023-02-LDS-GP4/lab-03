@@ -4,9 +4,7 @@ import "./style.scss"
 export default function AdminPage(){
     return (
         <>
-        <Header>
-
-        </Header>
+            <Header/ >
         </>
     )
 }
