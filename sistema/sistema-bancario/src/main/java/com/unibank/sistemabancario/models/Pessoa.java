@@ -14,4 +14,6 @@ public class Pessoa extends User{
     
     private String cpf;
     
+    @OneToOne
+    private Extrato extrato;
 }
