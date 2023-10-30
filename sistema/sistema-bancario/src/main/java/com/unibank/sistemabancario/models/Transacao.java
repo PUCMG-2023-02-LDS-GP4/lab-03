@@ -18,4 +18,6 @@ public class Transacao {
 
     private String mensagem;
 
+    @ManyToOne
+    private Extrato extrato;
 }
