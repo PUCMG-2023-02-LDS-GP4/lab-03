@@ -23,10 +23,13 @@ public class ProfessorService {
 
     //  "0 0 0 */6 * *" significa a cada 6 meses às 00:00:00 horas
     @Scheduled(cron = "0 0 0 */6 * *")
+    @Transactional
     public void addMoedasEmProfessores() {
         List<Professor> professores = professorRepository.findAll();
         for (Professor professor : professores) {
-            professor.setSaldoDeMoedas(professor.getSaldoDeMoedas() + 1000);
+            int moedasAdicionadas = 1000;
+            professor.setSaldoDeMoedas(professor.getSaldoDeMoedas() + moedasAdicionadas);
+            pessoaService.registrarTransacao(professor, moedasAdicionadas, "Adição semestral de moedas");
             professorRepository.save(professor);
         }
     }
