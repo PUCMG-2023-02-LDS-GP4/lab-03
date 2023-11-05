@@ -1,5 +1,6 @@
 package com.unibank.sistemabancario.services;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,22 +48,5 @@ public class PessoaService {
     public void delete(Long id) {
         pessoaRepository.deleteById(id);
     }
-
-    @Transactional
-    public void registrarTransacao(Pessoa pessoa, int quantidade, String mensagem) {
-        Transacao transacao = new Transacao();
-        transacao.setQuantidade(quantidade);
-        transacao.setMensagem(mensagem);
-        transacao.setData(LocalDateTime.now().toString());
-        
-        Extrato extrato = pessoa.getExtrato();
-        transacao.setExtrato(extrato);
-        
-        transacaoRepository.save(transacao);
-
-        extrato.getListaDeTransacoes().add(transacao);
-        extratoService.saveExtrato(extrato);
-    }
-
 
 }

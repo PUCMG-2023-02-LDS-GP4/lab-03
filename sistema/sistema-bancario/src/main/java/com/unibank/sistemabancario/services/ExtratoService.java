@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ExtratoService {
 
@@ -28,5 +30,12 @@ public class ExtratoService {
 
     public void deleteExtrato(Long id) {
         extratoRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Extrato updateExtrato(Transacao transacao) {
+        Extrato extrato = transacao.getExtrato();
+        extratoRepository.save(extrato);
+        return extrato;
     }
 }
