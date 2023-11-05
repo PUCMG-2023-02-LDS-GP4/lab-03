@@ -1,5 +1,7 @@
 package com.unibank.sistemabancario.models;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -12,7 +14,7 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String data;
+    private LocalDate data;
     
     private Integer quantidade;
 

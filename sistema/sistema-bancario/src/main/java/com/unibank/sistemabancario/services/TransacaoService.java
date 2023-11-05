@@ -6,6 +6,9 @@ import com.unibank.sistemabancario.models.Transacao;
 import com.unibank.sistemabancario.repositories.AlunoRepository;
 import com.unibank.sistemabancario.repositories.ProfessorRepository;
 import com.unibank.sistemabancario.repositories.TransacaoRepository;
+
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +42,8 @@ public class TransacaoService {
         alunoRepository.save(aluno);
         
         Transacao transacao = new Transacao();
+
+        transacao.setData(LocalDate.now());
         transacao.setQuantidade(quantidade);
         transacao.setMensagem(mensagem);
         transacaoRepository.save(transacao);
