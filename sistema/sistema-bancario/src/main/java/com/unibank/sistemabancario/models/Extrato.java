@@ -14,7 +14,8 @@ public class Extrato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
     @OneToMany(mappedBy = "extrato")
