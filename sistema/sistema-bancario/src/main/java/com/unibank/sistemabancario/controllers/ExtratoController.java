@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/extratos")
+@RequestMapping("/extratos")
 public class ExtratoController {
 
     @Autowired
@@ -42,4 +42,6 @@ public class ExtratoController {
         extratoService.deleteExtrato(id);
         return ResponseEntity.ok().build();
     }
+
+
 }

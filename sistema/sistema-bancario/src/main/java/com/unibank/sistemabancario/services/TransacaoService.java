@@ -9,7 +9,6 @@ import com.unibank.sistemabancario.repositories.ProfessorRepository;
 import com.unibank.sistemabancario.repositories.TransacaoRepository;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.transaction.Transactional;
 

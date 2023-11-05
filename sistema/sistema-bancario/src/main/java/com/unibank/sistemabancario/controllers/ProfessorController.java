@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.unibank.sistemabancario.services.ProfessorService;
 
 @RestController
-@RequestMapping("/api/professores")
+@RequestMapping("/professores")
 public class ProfessorController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class ProfessorController {
             @PathVariable Long professorId,
             @PathVariable Long alunoId,
             @RequestParam int quantidade) {
-                
+
         try {
 
             professorService.enviarMoedas(professorId, alunoId, quantidade);
