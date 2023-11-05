@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.unibank.sistemabancario.models.Aluno;
+import com.unibank.sistemabancario.models.Cupom;
 import com.unibank.sistemabancario.services.AlunoService;
 
 import java.util.List;
@@ -51,6 +52,19 @@ public class AlunoController {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/{alunoId}/vantagens/{vantagemId}/resgatar")
+    public ResponseEntity<?> resgatarVantagem(
+            @PathVariable Long alunoId,
+            @PathVariable Long vantagemId) {
+        try {
+            Cupom cupom = alunoService.resgatarVantagem(alunoId, vantagemId);
+            return ResponseEntity.ok(cupom);
+        } catch (RuntimeException e) {
+            // O tratamento de exceções poderia ser mais granular, com exceções personalizadas para diferentes situações
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
