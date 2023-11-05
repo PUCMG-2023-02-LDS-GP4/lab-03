@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,9 @@ public class AlunoService {
     
     @Autowired
     private CupomRepository cupomRepository;
+
+    @Autowired
+    private PessoaService pessoaService;
 
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
@@ -74,4 +79,15 @@ public class AlunoService {
 
         return cupom;
     }
+
+    @Transactional
+    public void receberMoedas(Long alunoId, int quantidade, String mensagem) {
+        Aluno aluno = alunoRepository.findById(alunoId)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+        aluno.setSaldoDeMoedas(aluno.getSaldoDeMoedas() + quantidade);
+        pessoaService.registrarTransacao(aluno, quantidade, mensagem);
+        alunoRepository.save(aluno);
+    }
+
+    
 }
