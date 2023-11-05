@@ -60,7 +60,10 @@ public class AlunoService {
         }
 
         aluno.setSaldoDeMoedas(aluno.getSaldoDeMoedas() - vantagem.getCustoEmMoedas());
-        alunoRepository.save(aluno);
+
+        String mensagem = "Resgate de vantagem: " + vantagem.getDescricao();
+        pessoaService.registrarTransacao(aluno, -vantagem.getCustoEmMoedas(), mensagem);
+
 
         vantagem.setQuantidade(vantagem.getQuantidade() - 1);
         vantagemRepository.save(vantagem);
