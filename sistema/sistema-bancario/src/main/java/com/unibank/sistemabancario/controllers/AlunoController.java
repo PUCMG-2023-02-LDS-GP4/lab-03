@@ -9,7 +9,7 @@ import com.unibank.sistemabancario.services.AlunoService;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/alunos")
 public class AlunoController {

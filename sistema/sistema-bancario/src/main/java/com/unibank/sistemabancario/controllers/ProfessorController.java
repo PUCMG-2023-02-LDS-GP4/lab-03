@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.unibank.sistemabancario.services.ProfessorService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/professores")
 public class ProfessorController {

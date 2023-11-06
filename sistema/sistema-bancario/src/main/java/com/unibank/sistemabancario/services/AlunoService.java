@@ -62,7 +62,7 @@ public class AlunoService {
         aluno.setSaldoDeMoedas(aluno.getSaldoDeMoedas() - vantagem.getCustoEmMoedas());
 
         String mensagem = "Resgate de vantagem: " + vantagem.getDescricao();
-        pessoaService.registrarTransacao(aluno, -vantagem.getCustoEmMoedas(), mensagem);
+       // pessoaService.registrarTransacao(aluno, -vantagem.getCustoEmMoedas(), mensagem);
 
 
         vantagem.setQuantidade(vantagem.getQuantidade() - 1);
@@ -88,7 +88,7 @@ public class AlunoService {
         Aluno aluno = alunoRepository.findById(alunoId)
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
         aluno.setSaldoDeMoedas(aluno.getSaldoDeMoedas() + quantidade);
-        pessoaService.registrarTransacao(aluno, quantidade, mensagem);
+        //pessoaService.registrarTransacao(aluno, quantidade, mensagem);
         alunoRepository.save(aluno);
     }
 

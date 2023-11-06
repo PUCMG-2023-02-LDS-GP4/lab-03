@@ -1,14 +1,7 @@
-import './App.scss'
-import AdminPage from './components/AdminPage/AdminPage'
+import "./App.scss";
+import React from "react";
+import RoutesApp from "./routes/router";
 
-function App() {
+const App = () => <RoutesApp />;
 
-  return (
-    <>
-      <AdminPage>
-      </AdminPage>
-    </>
-  )
-}
-
-export default App
+export default App;
