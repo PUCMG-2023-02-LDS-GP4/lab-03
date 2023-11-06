@@ -60,10 +60,11 @@ public class AlunoController {
             @PathVariable Long alunoId,
             @PathVariable Long vantagemId) {
         try {
+            
             Cupom cupom = alunoService.resgatarVantagem(alunoId, vantagemId);
             return ResponseEntity.ok(cupom);
         } catch (RuntimeException e) {
-            // O tratamento de exceções poderia ser mais granular, com exceções personalizadas para diferentes situações
+
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

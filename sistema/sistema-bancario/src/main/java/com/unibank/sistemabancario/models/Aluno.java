@@ -28,6 +28,6 @@ public class Aluno extends Pessoa {
     @ManyToOne
     private Admin admin;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "aluno")
     private List<Cupom> cupons = new ArrayList<>();
 }

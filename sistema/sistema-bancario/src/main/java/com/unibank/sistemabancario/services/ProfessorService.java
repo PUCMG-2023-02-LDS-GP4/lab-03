@@ -6,10 +6,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 import com.unibank.sistemabancario.models.Professor;
 import com.unibank.sistemabancario.repositories.ProfessorRepository;
 
+@Service
 public class ProfessorService {
     
     @Autowired

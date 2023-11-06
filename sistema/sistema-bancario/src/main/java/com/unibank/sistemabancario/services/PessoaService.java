@@ -49,4 +49,21 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
+    @Transactional
+    public void registrarTransacao(Pessoa pessoa, int quantidade, String mensagem) {
+        Transacao transacao = new Transacao();
+        transacao.setQuantidade(quantidade);
+        transacao.setMensagem(mensagem);
+        transacao.setData(LocalDate.now());
+        
+        Extrato extrato = pessoa.getExtrato();
+        transacao.setExtrato(extrato);
+        
+        transacaoRepository.save(transacao);
+
+        extrato.getListaDeTransacoes().add(transacao);
+        extratoService.saveExtrato(extrato);
+    }
+
+
 }
