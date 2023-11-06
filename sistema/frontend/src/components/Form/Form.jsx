@@ -1,40 +1,58 @@
-import { FormGroup, FormControl, InputLabel, Input, Button, Box} from "@mui/material"
-import { useState } from "react";
+import {
+	FormGroup,
+	FormControl,
+	InputLabel,
+	Input,
+	Button,
+	Box,
+} from "@mui/material";
+import { useForm } from "react-hook-form";
 
-// const { register, handleSubmit } = useForm();
-import './styles.scss'
+import "./styles.scss";
 
-export default function Form({fields, handleSubmit, action, buttonSubmitText, fieldsInitialValues}) {
+export default function Form({
+	fields,
+	action,
+	submit,
+	buttonSubmitText,
+	// handleSubmit,
+	// setFormData,
+	// formData,
+}) {
+	// const handleChange = (event) => {
+	// 	const { name, value } = event.target;
+	// 	setFormData({ ...formData, [name]: value });
+	// };
 
-    const [formData, setFormData] = useState(fieldsInitialValues);
+	const { register, handleSubmit } = useForm();
 
-    const handleChange = (event) => {
-      const { name, value } = event.target;
-      setFormData({ ...formData, [name]: value });
-    };
-  
-    const handleClick = () => {
-        handleSubmit();
-    }
-  return (
-    <div className="form-container">
-    <Box action={action || ""}>
-        <FormGroup>
-            {fields.map((field) => (
-                <FormControl key={field.id} className="field-container">
-                    <InputLabel htmlFor={field.id}>{field.label}</InputLabel>
-                    <Input
-                        type={field.type}
-                        id={field.id}
-                        name={field.id}
-                        value={formData[field.id]}
-                        onChange={handleChange}
-                    />
-                </FormControl>
-            ))}
-        </FormGroup>
-        <Button variant='contained' onClick={handleClick} color='secondary'>{buttonSubmitText}</Button>
-    </Box>
-    </div>
-  )
+	const handleClick = (e) => {
+		submit(e);
+	};
+	return (
+		<div className='form-container'>
+			<Box action={action || ""}>
+				<FormGroup>
+					{fields.map((field) => (
+						<FormControl key={field.id} className='field-container'>
+							<InputLabel htmlFor={field.id}>{field.label}</InputLabel>
+							<Input
+								type={field.type}
+								id={field.id}
+								name={field.id}
+								{...register(field.id)}
+							/>
+						</FormControl>
+					))}
+				</FormGroup>
+				<Button
+					variant='contained'
+					onClick={handleSubmit(handleClick)}
+					color='secondary'
+				>
+					{buttonSubmitText}
+				</Button>
+			</Box>
+		</div>
+	);
 }
