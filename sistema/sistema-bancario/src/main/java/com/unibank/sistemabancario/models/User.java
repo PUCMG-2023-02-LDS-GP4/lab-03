@@ -3,6 +3,8 @@ package com.unibank.sistemabancario.models;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ import javax.persistence.DiscriminatorType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.unibank.sistemabancario.models.enums.TipoUser;
 
 import lombok.Data;
 
@@ -55,5 +58,9 @@ public class User {
     @Size(groups = {CreateUser.class, UpdateUser.class} , min = 8, max = 60)
     //NotBlank é o mesmo que colocar o NotNull + NotEmpty
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type")
+    private TipoUser tipoUser;
 
 }
