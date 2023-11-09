@@ -60,7 +60,7 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_type")
+    @Column(name = "user_type", insertable = false, updatable = false)
     private TipoUser tipoUser;
 
 }
