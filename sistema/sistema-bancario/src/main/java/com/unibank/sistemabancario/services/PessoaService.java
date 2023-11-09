@@ -1,7 +1,6 @@
 package com.unibank.sistemabancario.services;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
