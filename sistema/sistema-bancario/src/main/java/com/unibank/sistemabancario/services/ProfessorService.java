@@ -31,7 +31,7 @@ public class ProfessorService {
         for (Professor professor : professores) {
             int moedasAdicionadas = 1000;
             professor.setSaldoDeMoedas(professor.getSaldoDeMoedas() + moedasAdicionadas);
-           // pessoaService.registrarTransacao(professor, moedasAdicionadas, "Adição semestral de moedas");
+            pessoaService.registrarTransacao(professor, moedasAdicionadas, "Adição semestral de moedas");
             professorRepository.save(professor);
         }
     }
@@ -46,7 +46,7 @@ public class ProfessorService {
             professorRepository.save(professor);
 
             alunoService.receberMoedas(alunoId, quantidade, "Recebimento de moedas de professor");
-           // pessoaService.registrarTransacao(professor, -quantidade, "Envio de moedas para aluno");
+            pessoaService.registrarTransacao(professor, -quantidade, "Envio de moedas para aluno");
         } else {
             throw new RuntimeException("Saldo insuficiente");
         }
