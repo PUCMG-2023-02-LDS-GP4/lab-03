@@ -9,10 +9,14 @@ const RoutesApp = () => {
 		<BrowserRouter>
 			<Fragment>
 				<Routes>
-					<Route exact path='/home' element={<AdminPage />} />
+					<Route path='*' element={<Login />} />
 					<Route path='/' element={<Login />} />
 					<Route exact path='/cadastro' element={<Cadastro />} />
-					<Route path='*' element={<Login />} />
+					{localStorage.getItem("isAutenticated") ? (
+						<Route exact path='/home' element={<AdminPage />} />
+					) : (
+						<Route path='/' element={<Login />} />
+					)}
 				</Routes>
 			</Fragment>
 		</BrowserRouter>
