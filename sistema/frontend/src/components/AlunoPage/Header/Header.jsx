@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Profile from '../Profile/Profile';
+import VantagensPage from '../VantagensPage/VantagensPage';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,7 +63,7 @@ export default function Header() {
         <p>1</p>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <p>2</p>
+        <VantagensPage />
       </CustomTabPanel>
     </Box>
   );
