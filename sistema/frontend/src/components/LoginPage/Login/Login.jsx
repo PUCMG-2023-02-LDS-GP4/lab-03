@@ -31,6 +31,8 @@ export default function Login() {
 				)
 				.then((res) => {
 					if (res.status === 200) {
+						localStorage.setItem("isAutenticated", "true");
+						navigate("/");
 						navigate("/home");
 					} else {
 						alert("Usuário ou Senha incorretos!");

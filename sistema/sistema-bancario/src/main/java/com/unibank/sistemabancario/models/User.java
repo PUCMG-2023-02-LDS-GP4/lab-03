@@ -32,7 +32,7 @@ public class User {
     public interface CreateUser{}
     public interface UpdateUser{}
 
-    public static final String TABLE_NAME = "user";
+    public static final String TABLE_NAME = "users";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

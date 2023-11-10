@@ -7,6 +7,7 @@ import * as Styles from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 // Import axios para conectar com o backend
 import axios from "axios";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const Cadastro = () => {
 	// state de error que quando for alterado, vai mudar o componente que ele está, no caso o da linha 84
@@ -84,6 +85,29 @@ const Cadastro = () => {
 					{...register("password", { required: true })}
 				/>
 				<Styles.labelError>{error}</Styles.labelError>
+				<FormControl sx={{ width: "100%" }}>
+					<InputLabel size='small'>Tipo</InputLabel>
+					<Select
+						size='small'
+						defaultValue={0}
+						{...register("userType", { required: "Tipo é obrigatória" })}
+						autoWidth
+						label='Tipo'
+					>
+						<MenuItem divider={true} sx={{ width: 300 }} value={0}>
+							<em>- -</em>
+						</MenuItem>
+						<MenuItem divider={true} sx={{ width: 300 }} value={"ALUNO"}>
+							Aluno
+						</MenuItem>
+						<MenuItem divider={true} sx={{ width: 300 }} value={"PROFESSOR"}>
+							Professor
+						</MenuItem>
+						<MenuItem divider={true} sx={{ width: 300 }} value={"EMPRESA"}>
+							Empresa
+						</MenuItem>
+					</Select>
+				</FormControl>
 				<Styles.Input type={"submit"} />
 				<Styles.LabelSignin>
 					Já tem uma conta?

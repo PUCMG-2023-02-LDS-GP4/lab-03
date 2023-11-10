@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @DiscriminatorValue("ALUNO")
+@Table(name = "users")
 public class Aluno extends Pessoa {
     
     private String rg;

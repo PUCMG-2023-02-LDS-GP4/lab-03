@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,6 +15,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @DiscriminatorValue("ADMIN")
+@Table(name = "users")
 public class Admin extends User {
 
     @OneToMany(mappedBy = "admin")

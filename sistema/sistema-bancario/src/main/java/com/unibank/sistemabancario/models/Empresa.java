@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @DiscriminatorValue("EMPRESA")
+@Table(name = "users")
 public class Empresa extends User {
     
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)

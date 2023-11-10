@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,6 @@ public class Extrato {
     private Pessoa pessoa;
 
     @OneToMany(mappedBy = "extrato")
-    private List<Transacao> listaDeTransacoes;
+    private List<Transacao> listaDeTransacoes = new ArrayList<>();
 
 }
