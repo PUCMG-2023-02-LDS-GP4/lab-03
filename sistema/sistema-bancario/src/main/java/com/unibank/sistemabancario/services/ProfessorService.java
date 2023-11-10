@@ -2,6 +2,7 @@ package com.unibank.sistemabancario.services;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,19 @@ public class ProfessorService {
 
     @Autowired
     private PessoaService pessoaService;
+
+    public List<Professor> findAll() {
+        return professorRepository.findAll();
+    }
+
+    public Professor findById(Long id) {
+        return professorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Professor não encontrado com ID: " + id));
+    }
+
+    public Professor save(Professor professor) {
+        return professorRepository.save(professor);
+    }
 
     //  "0 0 0 */6 * *" significa a cada 6 meses às 00:00:00 horas
     @Scheduled(cron = "0 0 0 */6 * *")

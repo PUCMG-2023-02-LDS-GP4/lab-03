@@ -6,4 +6,5 @@ import com.unibank.sistemabancario.models.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Long>{
     
+
 }
