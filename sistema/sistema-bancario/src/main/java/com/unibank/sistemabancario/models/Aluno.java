@@ -19,9 +19,6 @@ public class Aluno extends Pessoa {
     
     private String endereco;
 
-    @ManyToOne
-    private Instituicao instituicao;
-    
     private String curso;
     
     private int saldoDeMoedas;

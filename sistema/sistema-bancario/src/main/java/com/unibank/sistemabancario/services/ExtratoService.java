@@ -16,6 +16,10 @@ public class ExtratoService {
     @Autowired
     private ExtratoRepository extratoRepository;
 
+    public Extrato create(Extrato extrato) {
+        return extratoRepository.save(extrato);
+    }
+
     public List<Extrato> getAllExtratos() {
         return extratoRepository.findAll();
     }

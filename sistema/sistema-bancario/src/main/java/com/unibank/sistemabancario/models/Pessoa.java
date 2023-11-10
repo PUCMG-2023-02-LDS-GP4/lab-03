@@ -14,6 +14,11 @@ public class Pessoa extends User{
     
     private String cpf;
     
-    @OneToOne
-    private Extrato extrato = new Extrato();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "extrato_id")
+    private Extrato extrato;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "instituicao_id")
+    private Instituicao instituicao;
 }

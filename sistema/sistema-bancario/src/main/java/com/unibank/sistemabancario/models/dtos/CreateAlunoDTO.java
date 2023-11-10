@@ -1,9 +1,13 @@
 package com.unibank.sistemabancario.models.dtos;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.unibank.sistemabancario.models.enums.TipoUser;
 
 import lombok.Data;
 
@@ -39,4 +43,9 @@ public class CreateAlunoDTO {
     
     private int saldoDeMoedas;
 
+    @NotNull
+    private Long adminId;
+
+    @Enumerated(EnumType.STRING)
+    private TipoUser tipoUser;
 }

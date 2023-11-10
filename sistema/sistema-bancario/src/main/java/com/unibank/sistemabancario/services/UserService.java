@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unibank.sistemabancario.models.User;
+import com.unibank.sistemabancario.models.dtos.AuthResponseDTO;
 import com.unibank.sistemabancario.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,16 +68,16 @@ public class UserService {
     
 
     @Transactional
-    public User authenticateUser(String email, String password) {
+    public AuthResponseDTO authenticateUser(String email, String password) {
         User user = userRepository.findUserByEmail(email);
-
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
+        if (user != null && password.equals(user.getPassword())) {
+            AuthResponseDTO response = new AuthResponseDTO();
+            response.setNome(user.getNome());
+            response.setTipoUser(user.getTipoUser());
+            return response;
         }
+        return null;
     }
-
     
 
 

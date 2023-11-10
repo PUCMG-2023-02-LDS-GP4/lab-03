@@ -4,6 +4,7 @@ import com.unibank.sistemabancario.models.*;
 import com.unibank.sistemabancario.models.dtos.CreateAdminDTO;
 import com.unibank.sistemabancario.models.dtos.CreateEmpresaDTO;
 import com.unibank.sistemabancario.models.dtos.CreateProfessorDTO;
+import com.unibank.sistemabancario.models.dtos.UpdateProfessorDTO;
 import com.unibank.sistemabancario.services.AdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +53,8 @@ public class AdminController {
     }
 
     @PutMapping("/updateProfessor/{id}")
-    public Professor updateProfessor(@PathVariable Long id, @RequestBody CreateProfessorDTO createProfessorDTO) {
-        return adminService.updateProfessor(id, createProfessorDTO);
+    public Professor updateProfessor(@PathVariable Long id, @RequestBody UpdateProfessorDTO updateProfessorDTO) {
+        return adminService.updateProfessor(id, updateProfessorDTO);
     }
 
     @PutMapping("/updateEmpresa/{id}")

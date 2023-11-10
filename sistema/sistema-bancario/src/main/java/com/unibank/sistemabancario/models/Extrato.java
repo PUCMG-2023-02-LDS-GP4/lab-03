@@ -15,7 +15,7 @@ public class Extrato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 

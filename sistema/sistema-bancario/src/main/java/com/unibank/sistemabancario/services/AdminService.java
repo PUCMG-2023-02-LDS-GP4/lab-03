@@ -5,6 +5,7 @@ import com.unibank.sistemabancario.models.dtos.CreateAdminDTO;
 import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
 import com.unibank.sistemabancario.models.dtos.CreateEmpresaDTO;
 import com.unibank.sistemabancario.models.dtos.CreateProfessorDTO;
+import com.unibank.sistemabancario.models.dtos.UpdateProfessorDTO;
 import com.unibank.sistemabancario.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class AdminService {
     @Autowired
     private EmpresaRepository empresaRepository;
 
+    @Autowired
+    private ExtratoRepository extratoRepository;
+
     public Admin create(CreateAdminDTO createAdminDTO) {
         Admin admin = new Admin();
         admin.setNome(createAdminDTO.getNome());
@@ -42,6 +46,21 @@ public class AdminService {
         aluno.setEndereco(createAlunoDTO.getEndereco());
         aluno.setCurso(createAlunoDTO.getCurso());
         aluno.setSaldoDeMoedas(createAlunoDTO.getSaldoDeMoedas());
+
+        Admin admin = adminRepository.findById(createAlunoDTO.getAdminId())
+        .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        aluno.setAdmin(admin);
+        aluno.setTipoUser(createAlunoDTO.getTipoUser());
+
+        aluno = alunoRepository.save(aluno);
+
+        Extrato extrato = new Extrato();
+        extrato.setPessoa(aluno);
+        aluno.setExtrato(extrato);
+
+        extratoRepository.save(extrato);
+
         return alunoRepository.save(aluno);
     }
 
@@ -52,7 +71,26 @@ public class AdminService {
         professor.setPassword(createProfessorDTO.getPassword());
         professor.setCpf(createProfessorDTO.getCpf());
         professor.setDepartamento(createProfessorDTO.getDepartamento());
-        professor.setSaldoDeMoedas(createProfessorDTO.getSaldoDeMoedas());
+
+        Long adminId = createProfessorDTO.getAdminId();
+        if (adminId == null) {
+            throw new IllegalArgumentException("Admin ID must not be null");
+        }
+
+        Admin admin = adminRepository.findById(createProfessorDTO.getAdminId())
+        .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        professor.setAdmin(admin);
+        professor.setTipoUser(createProfessorDTO.getTipoUser());
+
+        professor = professorRepository.save(professor);
+
+        Extrato extrato = new Extrato();
+        extrato.setPessoa(professor);
+        professor.setExtrato(extrato);
+
+        extratoRepository.save(extrato);
+
         return professorRepository.save(professor);
     }
 
@@ -61,6 +99,12 @@ public class AdminService {
         empresa.setNome(createEmpresaDTO.getNome());
         empresa.setEmail(createEmpresaDTO.getEmail());
         empresa.setPassword(createEmpresaDTO.getPassword());
+
+        Admin admin = adminRepository.findById(createEmpresaDTO.getAdminId())
+        .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        empresa.setAdmin(admin);
+
         return empresaRepository.save(empresa);
     }
 
@@ -86,16 +130,16 @@ public class AdminService {
         return adminRepository.save(existingAdmin);
     }
 
-    public Professor updateProfessor(Long id, CreateProfessorDTO createProfessorDTO) {
+    public Professor updateProfessor(Long id, UpdateProfessorDTO updateProfessorDTO) {
         Professor existingProfessor = professorRepository.findById(id).orElseThrow(
             () -> new RuntimeException("Professor not found")
         );
-        existingProfessor.setNome(createProfessorDTO.getNome());
-        existingProfessor.setEmail(createProfessorDTO.getEmail());
-        existingProfessor.setPassword(createProfessorDTO.getPassword());
-        existingProfessor.setCpf(createProfessorDTO.getCpf());
-        existingProfessor.setDepartamento(createProfessorDTO.getDepartamento());
-        existingProfessor.setSaldoDeMoedas(createProfessorDTO.getSaldoDeMoedas());
+        existingProfessor.setNome(updateProfessorDTO.getNome());
+        existingProfessor.setEmail(updateProfessorDTO.getEmail());
+        existingProfessor.setPassword(updateProfessorDTO.getPassword());
+        existingProfessor.setCpf(updateProfessorDTO.getCpf());
+        existingProfessor.setDepartamento(updateProfessorDTO.getDepartamento());
+        existingProfessor.setSaldoDeMoedas(updateProfessorDTO.getSaldoDeMoedas());
 
         return professorRepository.save(existingProfessor);
     }
