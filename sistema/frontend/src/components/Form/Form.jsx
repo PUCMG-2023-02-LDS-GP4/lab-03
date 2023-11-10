@@ -15,9 +15,7 @@ export default function Form({
 	action,
 	submit,
 	buttonSubmitText,
-	// handleSubmit,
-	// setFormData,
-	// formData,
+	buttonColor
 }) {
 	// const handleChange = (event) => {
 	// 	const { name, value } = event.target;
@@ -31,7 +29,7 @@ export default function Form({
 	};
 	return (
 		<div className='form-container'>
-			<Box action={action || ""}>
+			<Box action={action || ""} sx={{display: "grid", justifyContent: "center", alignItems: "center"}}>
 				<FormGroup>
 					{fields.map((field) => (
 						<FormControl key={field.id} className='field-container'>
@@ -48,7 +46,7 @@ export default function Form({
 				<Button
 					variant='contained'
 					onClick={handleSubmit(handleClick)}
-					color='secondary'
+					color={buttonColor || "secondary"}
 				>
 					{buttonSubmitText}
 				</Button>
