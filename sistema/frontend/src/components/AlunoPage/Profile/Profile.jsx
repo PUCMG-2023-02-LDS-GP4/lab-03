@@ -59,11 +59,11 @@ export default function Profile() {
             }}
           >
             <Typography
-              sx={{ fontSize: "36px", color: "#000", whiteSpace: "nowrap" }}
+              sx={{ fontSize: "36px", color: "#FFF", whiteSpace: "nowrap" }}
             >
               Saldo de Moedas
             </Typography>
-            <Typography sx={{ fontSize: "36px", color: "#000" }}>
+            <Typography sx={{ fontSize: "36px", color: "#FFF" }}>
               {aluno.saldoDeMoedas}
             </Typography>
           </CardContent>
