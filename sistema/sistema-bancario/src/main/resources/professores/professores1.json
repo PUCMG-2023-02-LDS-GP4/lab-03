@@ -1,0 +1,42 @@
+[
+    {
+        "nome": "João Silva",
+        "email": "joaosilva@exemplo.com",
+        "password": "senhaJoao123",
+        "cpf": "11122233344",
+        "departamento": "CIENCIAS_EXATAS",
+        "tipoUser": "PROFESSOR"
+    },
+    {
+        "nome": "Maria Oliveira",
+        "email": "mariaoliveira@exemplo.com",
+        "password": "senhaMaria123",
+        "cpf": "55566677788",
+        "departamento": "CIENCIAS_SOCIAIS",
+        "tipoUser": "PROFESSOR"
+    },
+    {
+        "nome": "Maria Catarina",
+        "email": "mariacatarina@exemplo.com",
+        "password": "senhaMaria123",
+        "cpf": "55566677788",
+        "departamento": "CIENCIAS_BIOLOGICAS",
+        "tipoUser": "PROFESSOR"
+    },
+    {
+        "nome": "Ana Ferreira",
+        "email": "anaferreira@exemplo.com",
+        "password": "senhaAna123",
+        "cpf": "22233344455",
+        "departamento": "CIENCIAS_DA_SAUDE",
+        "tipoUser": "PROFESSOR"
+    },
+    {
+        "nome": "Roberto Santos",
+        "email": "robertosantos@exemplo.com",
+        "password": "senhaRoberto123",
+        "cpf": "66677788899",
+        "departamento": "CIENCIAS_DA_SAUDE",
+        "tipoUser": "PROFESSOR"
+    }
+]
