@@ -36,10 +36,6 @@ public class PessoaService {
     }
 
     public Pessoa save(Pessoa pessoa) {
-        Extrato novoExtrato = new Extrato();
-        novoExtrato = extratoService.saveExtrato(novoExtrato);
-        
-        pessoa.setExtrato(novoExtrato);
         
         return pessoaRepository.save(pessoa);
     }
