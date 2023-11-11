@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.unibank.sistemabancario.models.Aluno;
 import com.unibank.sistemabancario.models.Cupom;
-import com.unibank.sistemabancario.models.Extrato;
 import com.unibank.sistemabancario.models.Vantagem;
 import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
 import com.unibank.sistemabancario.repositories.AlunoRepository;

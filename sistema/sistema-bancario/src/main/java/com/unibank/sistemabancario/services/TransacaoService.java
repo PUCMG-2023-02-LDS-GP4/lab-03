@@ -12,24 +12,23 @@ import java.time.LocalDate;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransacaoService {
     
-    @Autowired
-    private TransacaoRepository transacaoRepository;
+    private final TransacaoRepository transacaoRepository;
+    private final ProfessorRepository professorRepository;
+    private final AlunoRepository alunoRepository;
+    private final ExtratoService extratoService;
     
-    @Autowired
-    private ProfessorRepository professorRepository;
+    public TransacaoService(TransacaoRepository transacaoRepository, ProfessorRepository professorRepository, AlunoRepository alunoRepository, ExtratoService extratoService) {
+        this.transacaoRepository = transacaoRepository;
+        this.professorRepository = professorRepository;
+        this.alunoRepository = alunoRepository;
+        this.extratoService = extratoService;
+    }
 
-    @Autowired
-    private AlunoRepository alunoRepository;
-
-    @Autowired
-    private ExtratoService extratoService;
-    
     @Transactional
     public void realizarTransacao(Long professorId, Long alunoId, int quantidade, String mensagem) {
         Professor professor = professorRepository.findById(professorId)

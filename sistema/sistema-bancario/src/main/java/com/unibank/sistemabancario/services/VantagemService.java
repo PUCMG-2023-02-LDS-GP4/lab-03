@@ -1,5 +1,7 @@
 package com.unibank.sistemabancario.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +20,10 @@ public class VantagemService {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    public List<Vantagem> findAll() {
+        return vantagemRepository.findAll();
+    }
 
     public Vantagem createVantagem(CreateVantagemDTO createVantagemDTO) {
         Vantagem vantagem = new Vantagem();
