@@ -39,8 +39,6 @@ public class CreateProfessorDTO {
     @NotNull(message = "ID da Instituição não pode ser nulo")
     private Long instituicaoId;
 
-    @NotNull
-    private Long adminId;
 
     @Enumerated(EnumType.STRING)
     private TipoUser tipoUser;
