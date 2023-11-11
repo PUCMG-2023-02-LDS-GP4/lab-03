@@ -1,5 +1,7 @@
 package com.unibank.sistemabancario.models;
 
+import java.util.Optional;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -15,6 +17,5 @@ public class Professor extends Pessoa {
     private String departamento;
     
     private int saldoDeMoedas = 1000;
-
 
 }
