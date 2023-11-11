@@ -15,8 +15,11 @@ import java.util.Optional;
 @RequestMapping("/alunos")
 public class AlunoController {
 
-    @Autowired
-    private AlunoService alunoService;
+    private final AlunoService alunoService;
+
+    public AlunoController(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Aluno>> findAll() {

@@ -3,7 +3,6 @@ package com.unibank.sistemabancario.controllers;
 import com.unibank.sistemabancario.models.*;
 import com.unibank.sistemabancario.services.ExtratoService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,11 @@ import java.util.Optional;
 @RequestMapping("/extratos")
 public class ExtratoController {
 
-    @Autowired
-    private ExtratoService extratoService;
+    private final ExtratoService extratoService;
+
+    public ExtratoController(ExtratoService extratoService) {
+        this.extratoService = extratoService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Extrato>> getAllExtratos() {

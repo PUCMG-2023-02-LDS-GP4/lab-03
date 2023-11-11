@@ -2,7 +2,6 @@ package com.unibank.sistemabancario.controllers;
 
 import com.unibank.sistemabancario.models.Instituicao;
 import com.unibank.sistemabancario.services.InstituicaoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/instituicoes")
 public class InstituicaoController {
 
-    @Autowired
-    private InstituicaoService instituicaoService;
+    private final InstituicaoService instituicaoService;
+
+    public InstituicaoController(InstituicaoService instituicaoService) {
+        this.instituicaoService = instituicaoService;
+    }
 
     @GetMapping
     public List<Instituicao> getAllInstituicoes() {
