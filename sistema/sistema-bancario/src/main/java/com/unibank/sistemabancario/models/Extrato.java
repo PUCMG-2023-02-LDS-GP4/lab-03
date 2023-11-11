@@ -2,6 +2,8 @@ package com.unibank.sistemabancario.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class Extrato {
     
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pessoa_id")
+    @JsonBackReference
     private Pessoa pessoa;
 
     @OneToMany(mappedBy = "extrato")
