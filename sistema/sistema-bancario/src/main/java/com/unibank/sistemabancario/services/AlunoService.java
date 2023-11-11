@@ -6,30 +6,34 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.unibank.sistemabancario.models.Aluno;
 import com.unibank.sistemabancario.models.Cupom;
+import com.unibank.sistemabancario.models.Extrato;
 import com.unibank.sistemabancario.models.Vantagem;
+import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
 import com.unibank.sistemabancario.repositories.AlunoRepository;
 import com.unibank.sistemabancario.repositories.CupomRepository;
+import com.unibank.sistemabancario.repositories.ExtratoRepository;
 import com.unibank.sistemabancario.repositories.VantagemRepository;
 
 @Service
 public class AlunoService {
-    
-    @Autowired
-    private AlunoRepository alunoRepository;
 
-    @Autowired
-    private VantagemRepository vantagemRepository;
-    
-    @Autowired
-    private CupomRepository cupomRepository;
+    private final AlunoRepository alunoRepository;
+    private final VantagemRepository vantagemRepository;
+    private final CupomRepository cupomRepository;
+    private final PessoaService pessoaService;
+    private final ExtratoRepository extratoRepository;
 
-    @Autowired
-    private PessoaService pessoaService;
+    public AlunoService(AlunoRepository alunoRepository, VantagemRepository vantagemRepository, CupomRepository cupomRepository, ExtratoRepository extratoRepository, PessoaService pessoaService){
+        this.alunoRepository = alunoRepository;
+        this.vantagemRepository = vantagemRepository;
+        this.cupomRepository = cupomRepository;
+        this.extratoRepository = extratoRepository;
+        this.pessoaService = pessoaService;
+    }
 
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
@@ -39,7 +43,26 @@ public class AlunoService {
         return alunoRepository.findById(id);
     }
 
-    public Aluno save(Aluno aluno) {
+    public Aluno save(CreateAlunoDTO createAlunoDTO) {
+
+            Aluno aluno = new Aluno();
+            aluno.setNome(createAlunoDTO.getNome());
+            aluno.setEmail(createAlunoDTO.getEmail());
+            aluno.setPassword(createAlunoDTO.getPassword());
+            aluno.setCpf(createAlunoDTO.getCpf());
+            aluno.setRg(createAlunoDTO.getRg());
+            aluno.setEndereco(createAlunoDTO.getEndereco());
+            aluno.setCurso(createAlunoDTO.getCurso());
+            aluno.setSaldoDeMoedas(createAlunoDTO.getSaldoDeMoedas());
+    
+            aluno.setTipoUser(createAlunoDTO.getTipoUser());
+    
+            aluno = alunoRepository.save(aluno);
+    
+            return alunoRepository.save(aluno);
+    }
+    
+    public Aluno update(Aluno aluno){
         return alunoRepository.save(aluno);
     }
 

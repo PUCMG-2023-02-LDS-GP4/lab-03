@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.unibank.sistemabancario.models.Aluno;
 import com.unibank.sistemabancario.models.Cupom;
+import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
 import com.unibank.sistemabancario.services.AlunoService;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
-        return ResponseEntity.ok(alunoService.save(aluno));
+    public ResponseEntity<Aluno> create(@RequestBody CreateAlunoDTO createAlunoDTO) {
+        return ResponseEntity.ok(alunoService.save(createAlunoDTO));
     }
     
     @PutMapping("/{id}")
@@ -38,7 +39,7 @@ public class AlunoController {
         Optional<Aluno> optionalAluno = alunoService.findById(id);
         if (optionalAluno.isPresent()) {
             aluno.setId(optionalAluno.get().getId());
-            return ResponseEntity.ok(alunoService.save(aluno));
+            return ResponseEntity.ok(alunoService.update(aluno));
         } else {
             return ResponseEntity.notFound().build();
         }

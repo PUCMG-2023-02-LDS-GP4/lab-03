@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,9 +25,7 @@ public class Aluno extends Pessoa {
     
     private int saldoDeMoedas;
 
-    @ManyToOne
-    private Admin admin;
-
     @OneToMany(mappedBy = "aluno")
+    @JsonIgnore
     private List<Cupom> cupons = new ArrayList<>();
 }
