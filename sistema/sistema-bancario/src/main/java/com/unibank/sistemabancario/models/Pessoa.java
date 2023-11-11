@@ -1,8 +1,8 @@
 package com.unibank.sistemabancario.models;
 
+
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -24,7 +24,6 @@ public class Pessoa extends User{
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "instituicao_id")
-    @JsonIgnore
     private Instituicao instituicao;
 
     @PostPersist
