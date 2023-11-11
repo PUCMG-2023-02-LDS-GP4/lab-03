@@ -15,14 +15,28 @@ import com.unibank.sistemabancario.repositories.VantagemRepository;
 @Service
 public class VantagemService {
 
-    @Autowired
-    private VantagemRepository vantagemRepository;
+    private final VantagemRepository vantagemRepository;
+    private final EmpresaRepository empresaRepository;
 
-    @Autowired
-    private EmpresaRepository empresaRepository;
+    public VantagemService(VantagemRepository vantagemRepository, EmpresaRepository empresaRepository) {
+        this.vantagemRepository = vantagemRepository;
+        this.empresaRepository = empresaRepository;
+    }
 
     public List<Vantagem> findAll() {
         return vantagemRepository.findAll();
+    }
+
+    public Vantagem findById(Long id) {
+        return vantagemRepository.findById(id).orElse(null);
+    }
+
+    public Vantagem save(Vantagem vantagem) {
+        return vantagemRepository.save(vantagem);
+    }
+
+    public void delete(Long id) {
+        vantagemRepository.deleteById(id);
     }
 
     public Vantagem createVantagem(CreateVantagemDTO createVantagemDTO) {
