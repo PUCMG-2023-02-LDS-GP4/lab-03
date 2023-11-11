@@ -19,6 +19,4 @@ public class Instituicao {
     @OneToMany(mappedBy = "instituicao")
     private List<Professor> listaDeProfessores;
 
-    @ManyToOne
-    private Admin admin;
 }
