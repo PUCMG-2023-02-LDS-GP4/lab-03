@@ -2,9 +2,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import CardActionArea from '@mui/material';
 
-export default function CardVantagem({descricao,custoEmMoedas, handleBuy,imageUrl}) {
+export default function CardVantagem({descricao,custoEmMoedas,imageUrl}) {
   return (
     <Card sx={{ minWidth: 375 }}>
       <CardActionArea>
@@ -22,11 +22,6 @@ export default function CardVantagem({descricao,custoEmMoedas, handleBuy,imageUr
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" onClick={handleBuy}>
-          Adquirir
-        </Button>
-      </CardActions>
     </Card>
   )
 }

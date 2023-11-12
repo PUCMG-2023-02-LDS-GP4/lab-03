@@ -52,17 +52,13 @@ export default function Header() {
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange}>
           <Tab label="Perfil" {...a11yProps(0)} />
-          <Tab label="Extrato" {...a11yProps(1)} />
-          <Tab label="Vantagens" {...a11yProps(2)} />
+          <Tab label="Vantagens" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <Profile />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <p>1</p>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
         <VantagensPage />
       </CustomTabPanel>
     </Box>

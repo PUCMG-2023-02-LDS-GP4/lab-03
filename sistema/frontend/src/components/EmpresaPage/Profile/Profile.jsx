@@ -3,31 +3,17 @@ import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Table from "../../Table/Table";
-import { TableRow, TableCell } from "@mui/material";
 
 export default function Profile() {
-  const [aluno, setAluno] = useState({
-    email: "aluno@gmail.com",
-    nome: "aluno",
-    password: "123456",
-    cpf: "12345678910",
-    rg: "MG12345678",
-    endereco: "Rua Yucatan 77",
-    Instituicao: "Exatas",
-    curso: "Engenharia de Software",
-    saldoDeMoedas: "10",
-    tipoUser: "ALUNO",
-    cupons: [
-      {id: 5, codigo: "1KL42DS", vantagem: "aiai"}
+  
+  const [empresa, setEmpresa] = useState({
+    email: "empresa@uiui.com",
+    nome: "Empresa Uiui",
+    tipoUser: "EMPRESA",
+    listaDeVantagens: [
+      {id: 5, descricao: "Metade do dobro do preço", custoEmMoedas: 3, quantidade: 100}
     ]
   });
-
-  const columns = [
-    { id: "id", label: "ID", minWidth: 50 },
-    { id: "codigo", label: "Código", minWidth: 50 },
-    { id: "vantagem", label: "Vantagem", minWidth: 50 },
-  ];
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -61,10 +47,10 @@ export default function Profile() {
             <Typography
               sx={{ fontSize: "36px", color: "#FFF", whiteSpace: "nowrap" }}
             >
-              Saldo de Moedas
+              Vantagens criadas
             </Typography>
             <Typography sx={{ fontSize: "36px", color: "#FFF" }}>
-              {aluno.saldoDeMoedas}
+              {empresa.listaDeVantagens.length}
             </Typography>
           </CardContent>
           <CardContent
@@ -77,27 +63,11 @@ export default function Profile() {
               fontSize: "36px",
             }}
           >
-              <Typography sx={{ fontSize: "36px" }}>{aluno.email}</Typography>
-              <Typography sx={{ fontSize: "36px" }}>{aluno.nome}</Typography>
-              <Typography sx={{ fontSize: "36px" }}>
-                {aluno.Instituicao}
-              </Typography>
-              <Typography sx={{ fontSize: "36px" }}>{aluno.curso}</Typography>
+              <Typography sx={{ fontSize: "36px" }}>{empresa.email}</Typography>
+              <Typography sx={{ fontSize: "36px" }}>{empresa.nome}</Typography>
           </CardContent>
         </Card>
       </Box>
-      <Typography gutterBottom variant="h5" component="h1" sx={{}}>
-        Vantagens obtidas
-      </Typography>
-      <Table columns={columns}>
-        {aluno.cupons.map((cupom) => (
-          <TableRow key={cupom.id}>
-            <TableCell>{cupom.id}</TableCell>
-            <TableCell>{cupom.codigo}</TableCell>
-            <TableCell>{cupom.vantagem}</TableCell>
-          </TableRow>
-        ))}
-      </Table>
     </Box>
   );
 }

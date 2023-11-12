@@ -10,27 +10,20 @@ import {
 	styled,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import "../../Form/styles.scss";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-export default function AlunoForm() {
+export default function CreateVantagemModal() {
+
 	const { register, handleSubmit } = useForm();
 	const [cloathImage, setImage] = useState("");
+    const [showImg, setShowImg] = useState();
 
 	const handleClick = (e) => {
 		submit(e);
 	};
 
-	const initialValues = {
-		descricao: "",
-		custo: "",
-		quantidade: "",
-		foto: "",
-	};
-
 	function submit({ descricao, custo, quantidade, foto }) {
 		// TODO fazer requisição post
-
 		var bodyFormData = new FormData();
 		bodyFormData.append("descricao", descricao);
 		bodyFormData.append("custo", custo);
@@ -46,7 +39,6 @@ export default function AlunoForm() {
 			"foto:",
 			foto
 		);
-
 		try {
 			axios
 				.post(
@@ -79,6 +71,10 @@ export default function AlunoForm() {
 		{ id: "quantidade", label: "Quantidade", type: "text" },
 	];
 
+    const handleOpenImg = () => {
+
+    }
+
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
 		setImage(file);
@@ -97,7 +93,6 @@ export default function AlunoForm() {
 		whiteSpace: "nowrap",
 		width: 1,
 	});
-
 	const ButtonStyle = {
 		variant: "contained",
 		disableRipple: true,
