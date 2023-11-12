@@ -11,9 +11,9 @@ const RoutesApp = () => {
 		<BrowserRouter>
 			<Fragment>
 				<Routes>
-					<Route path='*' element={<Login />} />
-					<Route path='/' element={<Login />} />
-					<Route exact path='/cadastro' element={<Cadastro />} />
+					<Route path='*' element={<AlunoPage />} />
+					<Route path='/' element={<AlunoPage />} />
+					<Route exact path='/cadastro' element={<AlunoPage />} />
 					{/* {localStorage.getItem("isAutenticated") ? ( */}
 					<Route exact path='/admin' element={<AdminPage />} />
 					<Route exact path='/aluno' element={<AlunoPage />} />
