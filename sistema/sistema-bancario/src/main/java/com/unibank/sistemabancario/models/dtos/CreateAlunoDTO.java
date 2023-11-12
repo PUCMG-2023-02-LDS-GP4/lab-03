@@ -43,9 +43,6 @@ public class CreateAlunoDTO {
     
     private int saldoDeMoedas;
 
-    @NotNull
-    private Long adminId;
-
     @Enumerated(EnumType.STRING)
     private TipoUser tipoUser;
 }

@@ -6,7 +6,6 @@ import com.unibank.sistemabancario.models.dtos.CreateVantagemDTO;
 import com.unibank.sistemabancario.services.EmpresaService;
 import com.unibank.sistemabancario.services.VantagemService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +17,13 @@ import java.util.Optional;
 @RequestMapping("/empresas")
 public class EmpresaController {
 
-    @Autowired
-    private EmpresaService empresaService;
+    private final EmpresaService empresaService;
+    private final VantagemService vantagemService;
 
-    
-    @Autowired
-    private VantagemService vantagemService;
+    public EmpresaController(EmpresaService empresaService, VantagemService vantagemService) {
+        this.empresaService = empresaService;
+        this.vantagemService = vantagemService;
+    }
 
     @GetMapping
     public List<Empresa> listAll() {

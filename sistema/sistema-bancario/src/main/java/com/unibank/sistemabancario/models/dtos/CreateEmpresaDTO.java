@@ -24,5 +24,4 @@ public class CreateEmpresaDTO {
     @Size(min = 8, max = 60, message = "Senha deve ter entre 8 e 60 caracteres")
     private String password;
 
-    private Long adminId;
 }

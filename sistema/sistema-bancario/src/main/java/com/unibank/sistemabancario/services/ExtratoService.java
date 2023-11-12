@@ -3,7 +3,6 @@ package com.unibank.sistemabancario.services;
 import com.unibank.sistemabancario.models.*;
 import com.unibank.sistemabancario.repositories.ExtratoRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +12,11 @@ import javax.transaction.Transactional;
 @Service
 public class ExtratoService {
 
-    @Autowired
-    private ExtratoRepository extratoRepository;
+    private final ExtratoRepository extratoRepository;
+
+    public ExtratoService(ExtratoRepository extratoRepository) {
+        this.extratoRepository = extratoRepository;
+    }
 
     public Extrato create(Extrato extrato) {
         return extratoRepository.save(extrato);

@@ -5,24 +5,28 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.unibank.sistemabancario.models.Professor;
+import com.unibank.sistemabancario.models.dtos.CreateProfessorDTO;
+import com.unibank.sistemabancario.repositories.ExtratoRepository;
 import com.unibank.sistemabancario.repositories.ProfessorRepository;
 
 @Service
 public class ProfessorService {
     
-    @Autowired
-    private ProfessorRepository professorRepository;
+    private final ProfessorRepository professorRepository;
+    private final AlunoService alunoService;
+    private final PessoaService pessoaService;
+    private final ExtratoRepository extratoRepository;
 
-    @Autowired
-    private AlunoService alunoService;
-
-    @Autowired
-    private PessoaService pessoaService;
+    public ProfessorService(ProfessorRepository professorRepository, ExtratoRepository extratoRepository, AlunoService alunoService,PessoaService pessoaService) {
+        this.professorRepository = professorRepository;
+        this.extratoRepository = extratoRepository;
+        this.alunoService = alunoService;
+        this.pessoaService = pessoaService; 
+    }
 
     public List<Professor> findAll() {
         return professorRepository.findAll();
@@ -31,6 +35,21 @@ public class ProfessorService {
     public Professor findById(Long id) {
         return professorRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Professor não encontrado com ID: " + id));
+    }
+
+    public Professor createProfessor(CreateProfessorDTO createProfessorDTO) {
+        Professor professor = new Professor();
+        professor.setNome(createProfessorDTO.getNome());
+        professor.setEmail(createProfessorDTO.getEmail());
+        professor.setPassword(createProfessorDTO.getPassword());
+        professor.setCpf(createProfessorDTO.getCpf());
+        professor.setDepartamento(createProfessorDTO.getDepartamento());
+
+        professor.setTipoUser(createProfessorDTO.getTipoUser());
+
+        professor = professorRepository.save(professor);
+
+        return professorRepository.save(professor);
     }
 
     public Professor save(Professor professor) {

@@ -1,8 +1,8 @@
 package com.unibank.sistemabancario.models;
 
-import javax.persistence.*;
+import java.util.Optional;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +18,4 @@ public class Professor extends Pessoa {
     
     private int saldoDeMoedas = 1000;
 
-    @ManyToOne
-    private Admin admin;
 }

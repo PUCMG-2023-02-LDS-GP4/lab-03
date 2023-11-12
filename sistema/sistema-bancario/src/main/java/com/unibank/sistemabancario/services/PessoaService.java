@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.unibank.sistemabancario.models.Extrato;
@@ -18,14 +17,15 @@ import com.unibank.sistemabancario.repositories.TransacaoRepository;
 @Service
 public class PessoaService {
     
-    @Autowired
-    private PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository;
+    private final ExtratoService extratoService;
+    private final TransacaoRepository transacaoRepository;
 
-    @Autowired
-    private ExtratoService extratoService;
-
-    @Autowired
-    private TransacaoRepository transacaoRepository;
+    public PessoaService(PessoaRepository pessoaRepository, ExtratoService extratoService, TransacaoRepository transacaoRepository) {
+        this.pessoaRepository = pessoaRepository;
+        this.extratoService = extratoService;
+        this.transacaoRepository = transacaoRepository;
+    }
 
     public List<Pessoa> findAll() {
         return pessoaRepository.findAll();
@@ -36,10 +36,6 @@ public class PessoaService {
     }
 
     public Pessoa save(Pessoa pessoa) {
-        Extrato novoExtrato = new Extrato();
-        novoExtrato = extratoService.saveExtrato(novoExtrato);
-        
-        pessoa.setExtrato(novoExtrato);
         
         return pessoaRepository.save(pessoa);
     }

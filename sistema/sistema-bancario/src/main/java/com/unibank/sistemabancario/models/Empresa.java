@@ -17,6 +17,5 @@ public class Empresa extends User {
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<Vantagem> listaDeVantagens = new ArrayList<>();
 
-    @ManyToOne
-    private Admin admin;
+
 }

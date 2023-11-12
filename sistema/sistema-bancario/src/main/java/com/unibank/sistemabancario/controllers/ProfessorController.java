@@ -1,10 +1,10 @@
 package com.unibank.sistemabancario.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.unibank.sistemabancario.models.Professor;
+import com.unibank.sistemabancario.models.dtos.CreateProfessorDTO;
 import com.unibank.sistemabancario.models.dtos.EnviarMoedasDTO;
 import com.unibank.sistemabancario.services.ProfessorService;
 @CrossOrigin
@@ -12,8 +12,17 @@ import com.unibank.sistemabancario.services.ProfessorService;
 @RequestMapping("/professores")
 public class ProfessorController {
 
-    @Autowired
-    private ProfessorService professorService;
+    private final ProfessorService professorService;
+
+    public ProfessorController(ProfessorService professorService) {
+        this.professorService = professorService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Professor> create(@RequestBody CreateProfessorDTO createProfessorDTO) {
+        return ResponseEntity.ok(professorService.createProfessor(createProfessorDTO));
+    }
+    
 
     @GetMapping
     public ResponseEntity<?> findAll() {

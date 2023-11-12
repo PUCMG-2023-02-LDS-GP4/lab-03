@@ -36,12 +36,6 @@ public class CreateProfessorDTO {
     @NotBlank(message = "Departamento não pode estar em branco")
     private String departamento;
 
-    @NotNull(message = "ID da Instituição não pode ser nulo")
-    private Long instituicaoId;
-
-    @NotNull
-    private Long adminId;
-
     @Enumerated(EnumType.STRING)
     private TipoUser tipoUser;
 

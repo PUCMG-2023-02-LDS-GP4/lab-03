@@ -4,8 +4,6 @@ import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.unibank.sistemabancario.models.Empresa;
-
 import lombok.Data;
 
 @Data
@@ -21,5 +19,5 @@ public class CreateVantagemDTO {
     @Lob
     private byte[] foto;
 
-    private Empresa empresa;
+    private Long empresaId;
 }
