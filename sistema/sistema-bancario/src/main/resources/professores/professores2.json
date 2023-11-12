@@ -5,6 +5,7 @@
         "password": "RicardoSeguro456",
         "cpf": "11122233344",
         "departamento": "CIENCIAS_EXATAS",
+        "instituicao" : "UFMG",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -13,6 +14,7 @@
         "password": "Luciana12345",
         "cpf": "55566677788",
         "departamento": "CIENCIAS_SOCIAIS",
+        "instituicao" : "UFMG",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -21,6 +23,7 @@
         "password": "SenhaPaulo789",
         "cpf": "55566677788",
         "departamento": "CIENCIAS_BIOLOGICAS",
+        "instituicao" : "UFMG",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -29,6 +32,7 @@
         "password": "TatianaSenha321",
         "cpf": "22233344455",
         "departamento": "CIENCIAS_DA_SAUDE",
+        "instituicao" : "UFMG",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -37,6 +41,7 @@
         "password": "SenhaForteFelipe",
         "cpf": "66677788899",
         "departamento": "CIENCIAS_DA_SAUDE",
+        "instituicao" : "UFMG",
         "tipoUser": "PROFESSOR"
     }
 ]

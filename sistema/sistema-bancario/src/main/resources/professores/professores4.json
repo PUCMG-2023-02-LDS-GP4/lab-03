@@ -5,6 +5,7 @@
         "password": "Lucas123",
         "cpf": "98989898989",
         "departamento": "CIENCIAS_EXATAS",
+        "instituicao" : "CEFET",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -13,6 +14,7 @@
         "password": "Patricia456",
         "cpf": "67676767676",
         "departamento": "CIENCIAS_SOCIAIS",
+        "instituicao" : "CEFET",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -21,6 +23,7 @@
         "password": "Fernando789",
         "cpf": "54545454545",
         "departamento": "CIENCIAS_BIOLOGICAS",
+        "instituicao" : "CEFET",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -29,6 +32,7 @@
         "password": "Juliana321",
         "cpf": "32323232323",
         "departamento": "CIENCIAS_DA_SAUDE",
+        "instituicao" : "CEFET",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -37,6 +41,7 @@
         "password": "Rafael123",
         "cpf": "21212121212",
         "departamento": "CIENCIAS_DA_SAUDE",
+        "instituicao" : "CEFET",
         "tipoUser": "PROFESSOR"
     }
 ]

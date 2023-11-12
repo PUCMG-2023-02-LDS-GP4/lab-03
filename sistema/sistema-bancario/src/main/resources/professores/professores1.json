@@ -5,6 +5,7 @@
         "password": "senhaJoao123",
         "cpf": "11122233344",
         "departamento": "CIENCIAS_EXATAS",
+        "instituicao" : "PUC",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -13,6 +14,7 @@
         "password": "senhaMaria123",
         "cpf": "55566677788",
         "departamento": "CIENCIAS_SOCIAIS",
+        "instituicao" : "PUC",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -21,6 +23,7 @@
         "password": "senhaMaria123",
         "cpf": "55566677788",
         "departamento": "CIENCIAS_BIOLOGICAS",
+        "instituicao" : "PUC",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -29,6 +32,7 @@
         "password": "senhaAna123",
         "cpf": "22233344455",
         "departamento": "CIENCIAS_DA_SAUDE",
+        "instituicao" : "PUC",
         "tipoUser": "PROFESSOR"
     },
     {
@@ -37,6 +41,7 @@
         "password": "senhaRoberto123",
         "cpf": "66677788899",
         "departamento": "CIENCIAS_DA_SAUDE",
+        "instituicao" : "PUC",
         "tipoUser": "PROFESSOR"
     }
 ]
