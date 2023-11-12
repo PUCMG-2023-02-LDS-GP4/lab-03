@@ -9,5 +9,4 @@ public enum Cursos {
     DIREITO,
     BIOLOGIA,
     SOCIOLOGIA
-
 }

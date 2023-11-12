@@ -1,7 +1,5 @@
 package com.unibank.sistemabancario.models;
 
-import java.util.Optional;
-
 import javax.persistence.*;
 
 import lombok.Data;
