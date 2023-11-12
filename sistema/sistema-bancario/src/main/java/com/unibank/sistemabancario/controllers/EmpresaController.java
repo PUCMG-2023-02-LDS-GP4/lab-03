@@ -2,7 +2,6 @@ package com.unibank.sistemabancario.controllers;
 
 import com.unibank.sistemabancario.models.Empresa;
 import com.unibank.sistemabancario.models.Vantagem;
-import com.unibank.sistemabancario.models.dtos.CreateVantagemDTO;
 import com.unibank.sistemabancario.services.EmpresaService;
 import com.unibank.sistemabancario.services.VantagemService;
 

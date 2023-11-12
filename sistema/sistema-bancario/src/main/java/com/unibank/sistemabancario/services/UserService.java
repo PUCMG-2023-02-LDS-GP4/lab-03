@@ -70,11 +70,12 @@ public class UserService {
     @Transactional
     public AuthResponseDTO authenticateUser(String email, String password) {
         User user = userRepository.findUserByEmail(email);
-        if (user != null && password.equals(user.getPassword())) {
-            AuthResponseDTO response = new AuthResponseDTO();
-            response.setNome(user.getNome());
-            response.setTipoUser(user.getTipoUser());
-            return response;
+        if (user != null) {
+            AuthResponseDTO responseDTO = new AuthResponseDTO();
+            responseDTO.setId(user.getId());
+            responseDTO.setNome(user.getNome());
+            responseDTO.setTipoUser(user.getTipoUser());
+            return responseDTO;
         }
         return null;
     }

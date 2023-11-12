@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AuthResponseDTO {
+    private Long id;
     private String nome;
     private TipoUser tipoUser;
 }
