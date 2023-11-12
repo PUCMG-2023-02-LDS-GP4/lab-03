@@ -16,8 +16,7 @@ public class CreateVantagemDTO {
     @NotNull(message = "Custo em moedas não pode ser nulo")
     private int custoEmMoedas;
 
-    @Lob
-    private byte[] foto;
+    private int quantidade;
 
     private Long empresaId;
 }

@@ -9,7 +9,10 @@ import com.unibank.sistemabancario.services.VantagemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 @CrossOrigin
@@ -68,10 +71,33 @@ public class EmpresaController {
     }
 
     @PostMapping("/{id}/vantagens")
-    public ResponseEntity<Vantagem> createVantagem(@RequestBody CreateVantagemDTO createVantagemDTO) {
-        Vantagem vantagem = vantagemService.createVantagem(createVantagemDTO);
-        return new ResponseEntity<>(vantagem, HttpStatus.CREATED);
+    public ResponseEntity<?> createVantagem(@PathVariable Long id,
+                                            @RequestParam("descricao") String descricao,
+                                            @RequestParam("quantidade") String quantidade,
+                                            @RequestParam("custoEmMoedas") int custoEmMoedas, 
+                                            @RequestPart("foto") MultipartFile file) {
+    
+        Empresa empresa = empresaService.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
+    
+        byte[] fotoBytes;
+        try {
+            fotoBytes = file.getBytes();
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao processar a foto");
+        }
+    
+        Vantagem vantagem = new Vantagem();
+        vantagem.setDescricao(descricao);
+        vantagem.setCustoEmMoedas(custoEmMoedas);
+        vantagem.setQuantidade(Integer.parseInt(quantidade));
+        vantagem.setFoto(fotoBytes);
+        vantagem.setEmpresa(empresa);
+        vantagemService.save(vantagem);
+    
+        return ResponseEntity.status(HttpStatus.CREATED).body("Vantagem criada com sucesso.");
     }
+    
 }
 
 
