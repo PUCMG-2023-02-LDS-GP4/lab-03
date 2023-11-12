@@ -5,6 +5,7 @@ import Cadastro from "../components/Cadastro/Cadastro";
 import AdminPage from "../components/AdminPage/AdminPage";
 import AlunoPage from "../components/AlunoPage/AlunoPage";
 import EmpresaPage from "../components/EmpresaPage/EmpresaPage";
+import ProfessorPage from "../components/ProfessorPage/ProfessorPage";
 
 const RoutesApp = () => {
 	return (
