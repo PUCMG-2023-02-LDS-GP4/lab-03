@@ -12,26 +12,22 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unibank.sistemabancario.models.Instituicao;
 import com.unibank.sistemabancario.models.Professor;
-import com.unibank.sistemabancario.repositories.InstituicaoRepository;
 import com.unibank.sistemabancario.repositories.ProfessorRepository;
 
 @Component
 public class InitializationConfig {
 
-    private final InstituicaoRepository instituicaoRepository;
     private final ProfessorRepository professorRepository;
 
-    public InitializationConfig(InstituicaoRepository instituicaoRepository, ProfessorRepository professorRepository) {
-        this.instituicaoRepository = instituicaoRepository;
+    public InitializationConfig(ProfessorRepository professorRepository) {
         this.professorRepository = professorRepository;
     }
 
     @PostConstruct
     @Transactional
     public void init() {
-        if (instituicaoRepository.count() == 0) {
+        if (professorRepository.count() == 0) {
             criarInstituicoesELerProfessores();
         }
     }
@@ -39,14 +35,9 @@ public class InitializationConfig {
     @Transactional
     private void criarInstituicoesELerProfessores() {
         for (long i = 1; i <= 4; i++) {
-            Instituicao instituicao = new Instituicao();
-            instituicao.setNome("Instituição " + i);
-            instituicao = instituicaoRepository.save(instituicao);
     
             List<Professor> professores = lerProfessoresDaInstituicao(i);
             for (Professor professor : professores) {
-                Instituicao instManaged = instituicaoRepository.merge(instituicao);
-                //professor.setInstituicao(instManaged);
                 professorRepository.save(professor);
             }
         }
