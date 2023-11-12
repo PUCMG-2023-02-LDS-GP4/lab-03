@@ -45,6 +45,8 @@ public class ProfessorService {
         professor.setCpf(createProfessorDTO.getCpf());
         professor.setDepartamento(createProfessorDTO.getDepartamento());
 
+        professor.setInstituicao(createProfessorDTO.getInstituicao());
+
         professor.setTipoUser(createProfessorDTO.getTipoUser());
 
         professor = professorRepository.save(professor);

@@ -53,6 +53,8 @@ public class AlunoService {
             aluno.setEndereco(createAlunoDTO.getEndereco());
             aluno.setCurso(createAlunoDTO.getCurso());
             aluno.setSaldoDeMoedas(createAlunoDTO.getSaldoDeMoedas());
+
+            aluno.setInstituicao(createAlunoDTO.getInstituicao());
     
             aluno.setTipoUser(createAlunoDTO.getTipoUser());
     

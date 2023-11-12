@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.unibank.sistemabancario.models.enums.Instituicao;
 import com.unibank.sistemabancario.models.enums.TipoUser;
 
 import lombok.Data;
@@ -36,8 +37,7 @@ public class CreateAlunoDTO {
     
     private String endereco;
 
-    @NotNull
-    private Long instituicaoId;
+    private Instituicao instituicao;
     
     private String curso;
     

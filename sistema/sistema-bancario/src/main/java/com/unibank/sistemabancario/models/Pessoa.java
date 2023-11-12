@@ -4,6 +4,7 @@ package com.unibank.sistemabancario.models;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.unibank.sistemabancario.models.enums.Instituicao;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,8 +23,7 @@ public class Pessoa extends User{
     @JsonManagedReference
     private Extrato extrato;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "instituicao_id")
+    @Enumerated(EnumType.STRING)
     private Instituicao instituicao;
 
     @PostPersist

@@ -1,12 +1,11 @@
 package com.unibank.sistemabancario.models.dtos;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.unibank.sistemabancario.models.enums.Instituicao;
 import com.unibank.sistemabancario.models.enums.TipoUser;
 
 import lombok.Data;
@@ -36,7 +35,8 @@ public class CreateProfessorDTO {
     @NotBlank(message = "Departamento não pode estar em branco")
     private String departamento;
 
-    @Enumerated(EnumType.STRING)
+    private Instituicao instituicao;
+
     private TipoUser tipoUser;
 
 }
