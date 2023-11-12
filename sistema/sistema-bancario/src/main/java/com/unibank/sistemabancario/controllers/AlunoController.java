@@ -63,13 +63,11 @@ public class AlunoController {
     public ResponseEntity<?> resgatarVantagem(
             @PathVariable Long alunoId,
             @PathVariable Long vantagemId) {
-        try {
-            
-            Cupom cupom = alunoService.resgatarVantagem(alunoId, vantagemId);
-            return ResponseEntity.ok(cupom);
-        } catch (RuntimeException e) {
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+            try {
+                alunoService.resgatarVantagem(alunoId, vantagemId);
+                return ResponseEntity.ok("Vantagem resgatada com sucesso.");
+            } catch (RuntimeException e) {
+                return ResponseEntity.badRequest().body(e.getMessage());
+            }
     }
 }
