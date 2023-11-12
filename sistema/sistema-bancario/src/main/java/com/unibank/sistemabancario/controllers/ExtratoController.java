@@ -45,5 +45,23 @@ public class ExtratoController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Extrato> getExtratoByUserId(@PathVariable Long userId) {
+        Optional<Extrato> extrato = extratoService.getExtratoByPessoaId(userId);
+        if (extrato.isPresent()) {
+            return ResponseEntity.ok(extrato.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/user/{userId}/transacoes")
+    public ResponseEntity<List<Transacao>> getTransacoesByUserId(@PathVariable Long userId) {
+        List<Transacao> transacoes = extratoService.getTransacoesByUserId(userId);
+        if (transacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(transacoes);
+    }
 
 }

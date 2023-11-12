@@ -4,6 +4,8 @@ import com.unibank.sistemabancario.models.*;
 import com.unibank.sistemabancario.repositories.ExtratoRepository;
 
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +45,18 @@ public class ExtratoService {
         Extrato extrato = transacao.getExtrato();
         extratoRepository.save(extrato);
         return extrato;
+    }
+
+    public Optional<Extrato> getExtratoByPessoaId(Long userId) {
+        return extratoRepository.findByPessoaId(userId);
+    }
+
+    public List<Transacao> getTransacoesByUserId(Long userId) {
+        Optional<Extrato> extratoOpt = extratoRepository.findByPessoaId(userId);
+        if (extratoOpt.isPresent()) {
+            return extratoOpt.get().getListaDeTransacoes();
+        } else {
+            return new ArrayList<>();
+        }
     }
 }
