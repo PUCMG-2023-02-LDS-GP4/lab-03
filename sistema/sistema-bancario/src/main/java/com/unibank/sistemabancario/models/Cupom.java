@@ -2,6 +2,8 @@ package com.unibank.sistemabancario.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Entity
@@ -18,6 +20,7 @@ public class Cupom {
     private Vantagem vantagem;
     
     @ManyToOne
+    @JsonBackReference
     private Aluno aluno;
 
 }

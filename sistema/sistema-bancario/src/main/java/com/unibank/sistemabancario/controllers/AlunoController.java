@@ -1,15 +1,14 @@
 package com.unibank.sistemabancario.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.unibank.sistemabancario.models.Aluno;
-import com.unibank.sistemabancario.models.Cupom;
 import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
 import com.unibank.sistemabancario.services.AlunoService;
 
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/alunos")

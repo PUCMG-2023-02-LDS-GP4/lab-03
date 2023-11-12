@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -21,5 +23,6 @@ public class Transacao {
     private String mensagem;
 
     @ManyToOne
+    @JsonIgnore
     private Extrato extrato;
 }

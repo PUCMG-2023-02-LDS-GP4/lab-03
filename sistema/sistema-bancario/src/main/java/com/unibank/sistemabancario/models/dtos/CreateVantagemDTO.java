@@ -1,6 +1,5 @@
 package com.unibank.sistemabancario.models.dtos;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
