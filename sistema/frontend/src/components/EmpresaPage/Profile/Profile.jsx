@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -14,6 +14,13 @@ export default function Profile() {
       {id: 5, descricao: "Metade do dobro do preço", custoEmMoedas: 3, quantidade: 100}
     ]
   });
+
+  useEffect(() => {
+    let empresaId = localStorage.getItem("idUser")
+    fetch(`http://localhost:8080/empresas/${empresaId}`)
+      .then((res) => res.json())
+      .then((res) => setEmpresa(res));
+  }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
