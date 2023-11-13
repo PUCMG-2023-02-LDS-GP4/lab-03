@@ -18,7 +18,7 @@ export default function CardVantagem({
 				<CardMedia
 					component='img'
 					height='140'
-					image={`data:image/png;base64,${imageUrl}`}
+					image={`data:image/**;base64,${imageUrl}`}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='div'>
