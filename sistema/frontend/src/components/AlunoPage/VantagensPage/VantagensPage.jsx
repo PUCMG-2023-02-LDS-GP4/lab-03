@@ -16,8 +16,6 @@ export default function VantagensPage() {
 
 	function handleBuy(vantagemId) {
 		let alunoId = localStorage.getItem("idUser");
-		console.log(alunoId);
-		console.log(id);
 		try {
 			fetch(
 				`http://localhost:8080/alunos/${alunoId}/vantagens/${vantagemId}/resgatar`,
