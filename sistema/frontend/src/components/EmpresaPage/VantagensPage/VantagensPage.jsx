@@ -61,6 +61,7 @@ export default function VantagensPage() {
 							key={vantagem.id}
 							custoEmMoedas={vantagem.custoEmMoedas}
 							descricao={vantagem.descricao}
+							imageUrl={vantagem.foto}
 						/>
 					))}
 				</Box>

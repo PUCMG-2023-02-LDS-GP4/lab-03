@@ -15,7 +15,11 @@ export default function CardVantagem({
 	return (
 		<Card sx={{ minWidth: 375, display: showCard }}>
 			<CardActionArea>
-				<CardMedia component='img' height='140' image={imageUrl} />
+				<CardMedia
+					component='img'
+					height='140'
+					image={`data:image/png;base64,${imageUrl}`}
+				/>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='div'>
 						$ {custoEmMoedas}
