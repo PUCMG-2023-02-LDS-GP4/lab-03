@@ -40,6 +40,10 @@ export const Label = styled.label`
 `;
 
 export const LabelSignup = styled.label`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
 	font-size: 16px;
 	color: #676767;
 `;
@@ -50,6 +54,10 @@ export const labelError = styled.label`
 `;
 
 export const Strong = styled.strong`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
 	cursor: pointer;
 
 	a {
