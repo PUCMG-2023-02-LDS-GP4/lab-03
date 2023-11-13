@@ -31,9 +31,13 @@ export default function Login() {
 				)
 				.then((res) => {
 					if (res.status === 200) {
-						localStorage.setItem("isAutenticated", "true");
+						console.log(res.data);
+						localStorage.setItem("idUser", res.data.id);
+						localStorage.setItem("userType", res.data.tipoUser);
 						navigate("/");
-						navigate("/home");
+						if (res.data.tipoUser === "EMPRESA") navigate("/empresa");
+						if (res.data.tipoUser === "ALUNO") navigate("/aluno");
+						if (res.data.tipoUser === "PROFESSOR") navigate("/professor");
 					} else {
 						alert("Usuário ou Senha incorretos!");
 					}
@@ -62,7 +66,8 @@ export default function Login() {
 				<C.LabelSignup>
 					Não tem uma conta?
 					<C.Strong>
-						<Link to='/cadastro'>Registre-se</Link>
+						<Link to='/cadastroEmpresa'>Registre sua Empresa</Link>
+						<Link to='/cadastroAluno'>Registre-se como Aluno</Link>
 					</C.Strong>
 				</C.LabelSignup>
 			</C.Content>
