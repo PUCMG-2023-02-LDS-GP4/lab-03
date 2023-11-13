@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,6 +16,13 @@ export default function Profile() {
     tipoUser: "Professor",
     departamento: "Ciência da Computação"
   });
+
+  useEffect(() => {
+    let professorId = localStorage.getItem("idUser")
+    fetch(`http://localhost:8080/professores/${professorId}`)
+      .then((res) => res.json())
+      .then((res) => setProfessor(res));
+  }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
