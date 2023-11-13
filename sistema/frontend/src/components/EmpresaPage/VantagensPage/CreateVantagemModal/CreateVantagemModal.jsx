@@ -12,54 +12,51 @@ import {
 import { useForm } from "react-hook-form";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-export default function CreateVantagemModal() {
-
+export default function CreateVantagemModal({ handleClose, setEmpresa }) {
 	const { register, handleSubmit } = useForm();
 	const [cloathImage, setImage] = useState("");
-    const [showImg, setShowImg] = useState();
+	const [showImg, setShowImg] = useState();
 
 	const handleClick = (e) => {
 		submit(e);
 	};
 
+	function atualizaEmpresa() {
+		let empresaId = localStorage.getItem("idUser");
+		fetch(`http://localhost:8080/empresas/${empresaId}`)
+			.then((res) => res.json())
+			.then((res) => setEmpresa(res));
+	}
+
 	function submit({ descricao, custo, quantidade, foto }) {
+		console.log(foto);
+		console.log(descricao);
+		console.log(custo);
+		console.log(quantidade);
 		// TODO fazer requisição post
 		var bodyFormData = new FormData();
 		bodyFormData.append("descricao", descricao);
-		bodyFormData.append("custo", custo);
+		bodyFormData.append("custoEmMoedas", custo);
 		bodyFormData.append("quantidade", quantidade);
 		bodyFormData.append("foto", foto[0] || "");
-		console.log(
-			"descricao: ",
-			descricao,
-			"custo:",
-			custo,
-			"quantidade:",
-			quantidade,
-			"foto:",
-			foto
-		);
 		try {
-			axios
-				.post(
-					"http://localhost:8080/alunos",
-					{
-						descricao: descricao,
-						custo: custo,
-						quantidade: quantidade,
-						foto: foto,
-					},
-					{
-						headers: { "Content-Type": "application/json" },
-					}
-				)
-				.then((res) => {
-					if (res.status === 200) {
-						alert("Aluno criado!");
-					} else {
-						alert("Usuário ou Senha incorretos!");
-					}
-				});
+			let empresaId = localStorage.getItem("idUser");
+			axios({
+				method: "post",
+				url: `http://localhost:8080/empresas/${empresaId}/vantagens`,
+				data: bodyFormData,
+				headers: {
+					"Content-Type": `multipart/form-data;`,
+				},
+			}).then((res) => {
+				if (res.status === 201) {
+					alert("Vantagem criada!");
+					atualizaEmpresa();
+					handleClose();
+				} else {
+					alert("Não foi possivel criar a vantagem!");
+				}
+			});
 		} catch (error) {
 			console.error(error.response.data);
 		}
@@ -70,10 +67,6 @@ export default function CreateVantagemModal() {
 		{ id: "custo", label: "Custo", type: "text" },
 		{ id: "quantidade", label: "Quantidade", type: "text" },
 	];
-
-    const handleOpenImg = () => {
-
-    }
 
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
@@ -126,7 +119,7 @@ export default function CreateVantagemModal() {
 								type='file'
 								name='imagem'
 								accept='image/*'
-								{...register("imagem")}
+								{...register("foto")}
 							/>
 						</Button>
 					</FormGroup>

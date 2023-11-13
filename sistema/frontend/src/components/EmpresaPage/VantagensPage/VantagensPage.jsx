@@ -12,16 +12,21 @@ export default function VantagensPage() {
 		nome: "Empresa Uiui",
 		tipoUser: "EMPRESA",
 		listaDeVantagens: [
-		{id: 5, descricao: "Metade do dobro do preço", custoEmMoedas: 3, quantidade: 100}
-		]});
+			{
+				id: 5,
+				descricao: "Metade do dobro do preço",
+				custoEmMoedas: 3,
+				quantidade: 100,
+			},
+		],
+	});
 
-
-		useEffect(() => {
-			let empresaId = localStorage.getItem("idUser")
-			fetch(`http://localhost:8080/empresas/${empresaId}`)
-				.then((res) => res.json())
-				.then((res) => setEmpresa(res));
-		}, []);
+	useEffect(() => {
+		let empresaId = localStorage.getItem("idUser");
+		fetch(`http://localhost:8080/empresas/${empresaId}`)
+			.then((res) => res.json())
+			.then((res) => setEmpresa(res));
+	}, []);
 
 	const [showCreateModal, setShowCreateModal] = useState(false);
 
@@ -35,7 +40,7 @@ export default function VantagensPage() {
 
 	return (
 		<>
-			<Box sx={{marginBottom: "10px"}}>
+			<Box sx={{ marginBottom: "10px" }}>
 				<Button variant='outlined' onClick={handleCreate}>
 					Nova Vantagem
 				</Button>
@@ -44,7 +49,13 @@ export default function VantagensPage() {
 				<Typography gutterBottom variant='h5' component='h1' sx={{}}>
 					Vantagens criadas
 				</Typography>
-				<Box sx={{ display: "flex", gap: "10px" }}>
+				<Box
+					sx={{
+						display: "grid",
+						gap: "15px",
+						gridTemplateColumns: "1fr 1fr 1fr 1fr",
+					}}
+				>
 					{empresa.listaDeVantagens.map((vantagem) => (
 						<CardVantagem
 							key={vantagem.id}
@@ -59,9 +70,11 @@ export default function VantagensPage() {
 				handleCloseCreateModal={handleCloseCreateModal}
 				onClose={handleCloseCreateModal}
 			>
-				<CreateVantagemModal />
+				<CreateVantagemModal
+					handleClose={handleCloseCreateModal}
+					setEmpresa={setEmpresa}
+				/>
 			</CustomModal>
-
 		</>
 	);
 }
