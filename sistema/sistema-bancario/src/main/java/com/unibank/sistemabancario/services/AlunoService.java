@@ -12,6 +12,7 @@ import com.unibank.sistemabancario.models.Aluno;
 import com.unibank.sistemabancario.models.Cupom;
 import com.unibank.sistemabancario.models.Vantagem;
 import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
+import com.unibank.sistemabancario.models.dtos.ResgateDeVantagemDTO;
 import com.unibank.sistemabancario.repositories.AlunoRepository;
 import com.unibank.sistemabancario.repositories.CupomRepository;
 import com.unibank.sistemabancario.repositories.ExtratoRepository;
@@ -71,7 +72,7 @@ public class AlunoService {
         alunoRepository.deleteById(id);
     }
     
-    public Cupom resgatarVantagem(Long alunoId, Long vantagemId) {
+    public ResgateDeVantagemDTO resgatarVantagem(Long alunoId, Long vantagemId) {
         Aluno aluno = alunoRepository.findById(alunoId).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
         Vantagem vantagem = vantagemRepository.findById(vantagemId).orElseThrow(() -> new RuntimeException("Vantagem não encontrada"));
 
@@ -99,12 +100,15 @@ public class AlunoService {
 
         aluno.getCupons().add(cupom);
 
-        
+        ResgateDeVantagemDTO resgateDeVantagemDTO = new ResgateDeVantagemDTO();
+        resgateDeVantagemDTO.setCupom(cupom.getCodigo());
+        resgateDeVantagemDTO.setEmpresaId(cupom.getVantagem().getEmpresa().getId());
+
         cupomRepository.save(cupom);
         alunoRepository.save(aluno);
 
 
-        return cupom;
+        return resgateDeVantagemDTO;
     }
 
     @Transactional

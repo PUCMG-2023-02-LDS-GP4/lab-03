@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.unibank.sistemabancario.models.Aluno;
 import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
+import com.unibank.sistemabancario.models.dtos.ResgateDeVantagemDTO;
 import com.unibank.sistemabancario.services.AlunoService;
 
 import java.util.List;
@@ -63,8 +64,8 @@ public class AlunoController {
             @PathVariable Long alunoId,
             @PathVariable Long vantagemId) {
             try {
-                alunoService.resgatarVantagem(alunoId, vantagemId);
-                return ResponseEntity.ok("Vantagem resgatada com sucesso.");
+                ResgateDeVantagemDTO resgateDeVantagemDTO = alunoService.resgatarVantagem(alunoId, vantagemId);
+                return ResponseEntity.ok(resgateDeVantagemDTO);
             } catch (RuntimeException e) {
                 return ResponseEntity.badRequest().body(e.getMessage());
             }
