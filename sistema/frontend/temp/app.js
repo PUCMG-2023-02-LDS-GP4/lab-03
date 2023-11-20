@@ -4,7 +4,7 @@ import sgMail from "@sendgrid/mail";
 import cors from "cors";
 
 sgMail.setApiKey(
-	"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"
+	""
 );
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/send-email", (req, res) => {
+app.post("/send-email", async (req, res) => {
 	const { studentEmail, partnerEmail, studentName, cupomStudent } = req.body;
 
 	const studentMsg = {
@@ -34,7 +34,7 @@ app.post("/send-email", (req, res) => {
 		from: "1325163@sga.pucminas.br", // Change to your verified sender
 		subject: "Vantagem Resgatada",
 		text: "AAAA",
-		html:  `
+		html: `
 		<div>
 		  <h1>Olá!</h1>
 		  <p>O aluno ${studentName} acabou de resgatar o seguinte cupom: ${cupomStudent}</p>
@@ -42,16 +42,16 @@ app.post("/send-email", (req, res) => {
 	`,
 	};
 
-	sgMail
+	await sgMail
 		.send(studentMsg)
 		.then(() => {
 			console.log("Email sent");
 		})
 		.catch((error) => {
-			console.error(error);
+			console.error(error.response.body.errors);
 		});
 
-	sgMail
+	await sgMail
 		.send(partnertMsg)
 		.then(() => {
 			console.log("Email sent");

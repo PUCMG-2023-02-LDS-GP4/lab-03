@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@CrossOrigin
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)

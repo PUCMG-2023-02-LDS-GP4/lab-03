@@ -5,9 +5,9 @@ import Typography from "@mui/material/Typography";
 import "./style.scss";
 import axios from "axios";
 
-export default function VantagensPage() {
+export default function VantagensPage({ aluno }) {
 	const [vantagens, setVantanges] = useState([]);
-	const [aluno, setAluno] = useState([]);
+	const [empresa, setEmpresa] = useState([]);
 
 	useEffect(() => {
 		fetch(`http://localhost:8080/vantagens`)
@@ -15,15 +15,10 @@ export default function VantagensPage() {
 			.then((res) => setVantanges(res));
 	}, []);
 
-	const alunoId = localStorage.getItem("idUser");
-	const getAlunoEmpresa = () => {
-		fetch(`http://localhost:8080/aluno/${alunoId}`)
-			.then((res) => res.json())
-			.then((res) => setAluno(res));
-
-		fetch(`http://localhost:8080/vantagens`)
-			.then((res) => res.json())
-			.then((res) => setVantanges(res));
+	const getEmpresa = async (id) => {
+		await axios
+			.get(`http://localhost:8080/empresas/${id}`)
+			.then((res) => setEmpresa(res.data));
 	};
 
 	function handleBuy(vantagemId) {
@@ -35,20 +30,26 @@ export default function VantagensPage() {
 					method: "POST",
 					body: "",
 				}
-			).then((res) => {
-				if (res.status === 200) {
+			)
+				.then((res) => res.json())
+				.then((res) => {
+					if (res) {
+						const idEmpresa = res.empresaId;
+						getEmpresa(idEmpresa);
+					}
 					alert("Vantagem Resgatada!");
-					getAlunoEmpresa();
-					axios.post('http://localhost:5000/send-email/', {
-						studentEmail: 'augustobaldiotti@hotmail.com',
-						partnerEmail: 'augustobaldiotti1@hotmail.com',
-						studentName: aluno.nome,
-						cupomStudent: res.cupom,
-					}).then(() => { console.log("aizedamanga");})
-				} else {
-					alert("Usuário ou Senha incorretos!");
-				}
-			});
+					console.log(empresa)
+					axios
+						.post("http://localhost:5000/send-email/", {
+							studentEmail: aluno.email,
+							partnerEmail: empresa.email,
+							studentName: aluno.nome,
+							cupomStudent: res.cupom,
+						})
+						.then(() => {
+							console.log("aizedamanga");
+						});
+				});
 		} catch (error) {
 			console.error(error.response.data);
 		}

@@ -1,13 +1,11 @@
 import { Box } from "@mui/material";
-import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Table from "../../Table/Table";
 import { TableRow, TableCell } from "@mui/material";
 
-export default function Profile() {
-	const [aluno, setAluno] = useState();
+export default function Profile({aluno}) {
 
 	const columns = [
 		{ id: "id", label: "ID", minWidth: 50 },
@@ -15,12 +13,7 @@ export default function Profile() {
 		{ id: "vantagem", label: "Vantagem", minWidth: 50 },
 	];
 
-	useEffect(() => {
-		let alunoId = localStorage.getItem("idUser");
-		fetch(`http://localhost:8080/alunos/${alunoId}`)
-			.then((res) => res.json())
-			.then((res) => setAluno(res));
-	}, []);
+	
 
 	return (
 		<Box sx={{ width: "100%" }}>
