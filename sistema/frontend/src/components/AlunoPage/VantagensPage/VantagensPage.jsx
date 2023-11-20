@@ -41,7 +41,9 @@ export default function VantagensPage() {
 					getAlunoEmpresa();
 					axios.post('http://localhost:5000/send-email/', {
 						studentEmail: 'augustobaldiotti@hotmail.com',
-						partnerEmail: 'augustobaldiotti1@hotmail.com'
+						partnerEmail: 'augustobaldiotti1@hotmail.com',
+						studentName: aluno.nome,
+						cupomStudent: res.cupom,
 					}).then(() => { console.log("aizedamanga");})
 				} else {
 					alert("Usuário ou Senha incorretos!");

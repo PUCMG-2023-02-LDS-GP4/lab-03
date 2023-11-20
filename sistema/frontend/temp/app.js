@@ -14,14 +14,19 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/send-email", (req, res) => {
-	const { studentEmail, partnerEmail } = req.body;
+	const { studentEmail, partnerEmail, studentName, cupomStudent } = req.body;
 
 	const studentMsg = {
 		to: studentEmail, // Change to your recipient
 		from: "1325163@sga.pucminas.br", // Change to your verified sender
 		subject: "Vantagem Resgatada",
 		text: "AAAA",
-		html: "<strong>PENES</strong>",
+		html: `
+			<div>
+			  <h1>Olá, ${studentName}!</h1>
+			  <p>Você acabou de resgatar o seguinte cupom: ${cupomStudent}</p>
+			</div>
+		`,
 	};
 
 	const partnertMsg = {
@@ -29,7 +34,12 @@ app.post("/send-email", (req, res) => {
 		from: "1325163@sga.pucminas.br", // Change to your verified sender
 		subject: "Vantagem Resgatada",
 		text: "AAAA",
-		html: "<strong>PENES</strong>",
+		html:  `
+		<div>
+		  <h1>Olá!</h1>
+		  <p>O aluno ${studentName} acabou de resgatar o seguinte cupom: ${cupomStudent}</p>
+		</div>
+	`,
 	};
 
 	sgMail
