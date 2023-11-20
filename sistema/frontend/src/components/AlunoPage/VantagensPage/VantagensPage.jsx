@@ -39,33 +39,10 @@ export default function VantagensPage() {
 				if (res.status === 200) {
 					alert("Vantagem Resgatada!");
 					getAlunoEmpresa();
-					axios.all([
-						axios.post(
-							`https://formsubmit.co/ajax/${aluno.email}`,
-							{
-								headers: {
-									"Content-Type": "application/json",
-									Accept: "application/json",
-								},
-								body: JSON.stringify({
-									name: 'Vantagem Resgatada',
-									message: `Segue o seu cumpom da vantagem resgatada: ${}`,
-								}),
-							}
-						),
-					]);
-					fetch("https://formsubmit.co/ajax/augustobaldiotti@hotmail.com", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-							Accept: "application/json",
-						},
-						body: JSON.stringify({
-							name: nome.value,
-							email: emailm.value,
-							message: mensagem.value,
-						}),
-					});
+					axios.post('http://localhost:5000/send-email/', {
+						studentEmail: 'augustobaldiotti@hotmail.com',
+						partnerEmail: 'augustobaldiotti1@hotmail.com'
+					}).then(() => { console.log("aizedamanga");})
 				} else {
 					alert("Usuário ou Senha incorretos!");
 				}
