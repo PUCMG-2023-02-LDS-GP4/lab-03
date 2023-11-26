@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,13 +17,10 @@ import com.unibank.sistemabancario.models.Professor;
 import com.unibank.sistemabancario.repositories.ProfessorRepository;
 
 @Component
+@AllArgsConstructor
 public class InitializationConfig {
 
     private final ProfessorRepository professorRepository;
-
-    public InitializationConfig(ProfessorRepository professorRepository) {
-        this.professorRepository = professorRepository;
-    }
 
     @PostConstruct
     @Transactional
