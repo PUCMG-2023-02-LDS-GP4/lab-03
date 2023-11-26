@@ -8,10 +8,12 @@ import com.unibank.sistemabancario.models.enums.Instituicao;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 
 @Entity
 @Data
+@SuperBuilder
 @EqualsAndHashCode(callSuper=false, exclude = {"extrato", "instituicao"})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Pessoa extends User{
@@ -30,5 +32,9 @@ public class Pessoa extends User{
     public void criarExtrato(){
         this.extrato = new Extrato();
         this.extrato.setPessoa(this);
+    }
+
+    public Pessoa() {
+
     }
 }

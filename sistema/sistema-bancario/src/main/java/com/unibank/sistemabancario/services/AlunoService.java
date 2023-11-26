@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -45,23 +46,29 @@ public class AlunoService {
 
     public Aluno save(CreateAlunoDTO createAlunoDTO) {
 
-            Aluno aluno = new Aluno();
-            aluno.setNome(createAlunoDTO.getNome());
-            aluno.setEmail(createAlunoDTO.getEmail());
-            aluno.setPassword(createAlunoDTO.getPassword());
-            aluno.setCpf(createAlunoDTO.getCpf());
-            aluno.setRg(createAlunoDTO.getRg());
-            aluno.setEndereco(createAlunoDTO.getEndereco());
-            aluno.setCurso(createAlunoDTO.getCurso());
-            aluno.setSaldoDeMoedas(createAlunoDTO.getSaldoDeMoedas());
-
-            aluno.setInstituicao(createAlunoDTO.getInstituicao());
-    
-            aluno.setTipoUser(createAlunoDTO.getTipoUser());
+            Aluno aluno = Aluno.builder()
+                .nome(createAlunoDTO.getNome())
+                .email(createAlunoDTO.getEmail())
+                .password(createAlunoDTO.getPassword())
+                .cpf(createAlunoDTO.getCpf())
+                .rg(createAlunoDTO.getRg())
+                .endereco(createAlunoDTO.getEndereco())
+                .curso(createAlunoDTO.getCurso())
+                .saldoDeMoedas(createAlunoDTO.getSaldoDeMoedas())
+                .instituicao(createAlunoDTO.getInstituicao())
+                .tipoUser(createAlunoDTO.getTipoUser())
+                .build();
     
             aluno = alunoRepository.save(aluno);
     
             return alunoRepository.save(aluno);
+    }
+
+    public Aluno updateAluno(Long id, Aluno aluno) {
+        Aluno optionalAluno = this.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        aluno.setId(optionalAluno.getId());
+        return this.update(aluno);
     }
     
     public Aluno update(Aluno aluno){

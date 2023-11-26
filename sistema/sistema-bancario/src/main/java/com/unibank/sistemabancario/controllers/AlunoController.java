@@ -7,6 +7,7 @@ import com.unibank.sistemabancario.models.dtos.CreateAlunoDTO;
 import com.unibank.sistemabancario.models.dtos.ResgateDeVantagemDTO;
 import com.unibank.sistemabancario.services.AlunoService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,11 +40,9 @@ public class AlunoController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno aluno) {
-        Optional<Aluno> optionalAluno = alunoService.findById(id);
-        if (optionalAluno.isPresent()) {
-            aluno.setId(optionalAluno.get().getId());
-            return ResponseEntity.ok(alunoService.update(aluno));
-        } else {
+        try {
+            return ResponseEntity.ok(alunoService.updateAluno(id, aluno));
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
