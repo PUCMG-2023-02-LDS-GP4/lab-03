@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -62,6 +63,13 @@ public class AlunoService {
             aluno = alunoRepository.save(aluno);
     
             return alunoRepository.save(aluno);
+    }
+
+    public Aluno updateAluno(Long id, Aluno aluno) {
+        Aluno optionalAluno = this.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        aluno.setId(optionalAluno.getId());
+        return this.update(aluno);
     }
     
     public Aluno update(Aluno aluno){
