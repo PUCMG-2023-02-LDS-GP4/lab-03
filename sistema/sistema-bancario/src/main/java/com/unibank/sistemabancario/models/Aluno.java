@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import lombok.experimental.SuperBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,7 @@ import lombok.EqualsAndHashCode;
 @CrossOrigin
 @Entity
 @Data
+@SuperBuilder
 @EqualsAndHashCode(callSuper=false)
 @DiscriminatorValue("ALUNO")
 @Table(name = "users")
@@ -33,4 +35,7 @@ public class Aluno extends Pessoa {
     @JsonManagedReference
     @JsonIgnore
     private List<Cupom> cupons = new ArrayList<>();
+
+    public Aluno() {
+    }
 }

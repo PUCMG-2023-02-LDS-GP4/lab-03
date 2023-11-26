@@ -22,12 +22,14 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.unibank.sistemabancario.models.enums.TipoUser;
 
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = User.TABLE_NAME)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 @Data
+@SuperBuilder
 public class User {
     public interface CreateUser{}
     public interface UpdateUser{}
@@ -63,4 +65,6 @@ public class User {
     @Column(name = "user_type", insertable = false, updatable = false)
     private TipoUser tipoUser;
 
+    public User() {
+    }
 }

@@ -46,19 +46,18 @@ public class AlunoService {
 
     public Aluno save(CreateAlunoDTO createAlunoDTO) {
 
-            Aluno aluno = new Aluno();
-            aluno.setNome(createAlunoDTO.getNome());
-            aluno.setEmail(createAlunoDTO.getEmail());
-            aluno.setPassword(createAlunoDTO.getPassword());
-            aluno.setCpf(createAlunoDTO.getCpf());
-            aluno.setRg(createAlunoDTO.getRg());
-            aluno.setEndereco(createAlunoDTO.getEndereco());
-            aluno.setCurso(createAlunoDTO.getCurso());
-            aluno.setSaldoDeMoedas(createAlunoDTO.getSaldoDeMoedas());
-
-            aluno.setInstituicao(createAlunoDTO.getInstituicao());
-    
-            aluno.setTipoUser(createAlunoDTO.getTipoUser());
+            Aluno aluno = Aluno.builder()
+                .nome(createAlunoDTO.getNome())
+                .email(createAlunoDTO.getEmail())
+                .password(createAlunoDTO.getPassword())
+                .cpf(createAlunoDTO.getCpf())
+                .rg(createAlunoDTO.getRg())
+                .endereco(createAlunoDTO.getEndereco())
+                .curso(createAlunoDTO.getCurso())
+                .saldoDeMoedas(createAlunoDTO.getSaldoDeMoedas())
+                .instituicao(createAlunoDTO.getInstituicao())
+                .tipoUser(createAlunoDTO.getTipoUser())
+                .build();
     
             aluno = alunoRepository.save(aluno);
     
